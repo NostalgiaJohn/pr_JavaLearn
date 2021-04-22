@@ -404,8 +404,8 @@ class VariableTest {
    }
    ```
 
-   #### 其他运算符
-   
+#### 其他运算符
+
    1. 关系运算符
    
       ```java
@@ -451,36 +451,259 @@ class VariableTest {
       	有真即真，同假为假
       !
       	非，取反
-      */
       
       逻辑运算符：
           一般用于组合条件的判断，条件过滤，多情况分析。
-           
-      断路原则
+      */   
+      class Demo1 {
+      	public static void main(String[] args) {
+      		boolean ret = 5 > 3 && 10 > 5;
+      		System.out.println(ret); // T
+      		
+      		ret = 5 > 10 && 10 > 8;
+      		System.out.println(ret); // F
+      		
+      		ret = 5 > 10 || 10 > 8;
+      		System.out.println(ret); // T
+      		
+      		ret = 5 > 10 || 10 > 20;
+      		System.out.println(ret); // F
+      		
+      		ret = !(10 > 5);
+      		System.out.println(ret); // F
+      	}
+      }
       ```
+   
+      
    
    3. 自增自减运算符
    
       ```
       【注意事项】
       	1. 自增自减运算符有且只能操作变量！！
-      	2. 
+      	2. 自增自减运算符独立存在！！
+      	3. 【建议】使用+= 1和-= 1 代替自增自减运算符 --eg：Swift取消自增自减运算符
       	
-      ++ ：
-      -- ：
+      ++ ：自增1，num++ 运行顺序为后执行
+      -- ：自减1
+      ```
+   
+   4. 自增自减代码实例
+   
+      ```java
+      class Demo2 {
+      	public static void main(String[] args) {
+      		int num = 10;
+      		
+      		// 先执行该语句(此处为：打印语句)，再执行自增操作
+      		System.out.println("num++ : " + num++); // 10 
+      		System.out.println("num : " + num); // 11
+      		
+      		// 效果同上
+      		System.out.println("num : " + num); // 11 
+      		num++;
+      		System.out.println("num : " + num); // 12
+      		
+      		// 先执行自增操作，再执行该语句
+      		System.out.println("num++ : " + ++num); // 13
+      		System.out.println("num : " + num); // 13
+      	}
+      }
       ```
    
       
    
-   4. 
+   5. 【逻辑运算符断路原则问题】
    
+      ```java
+      class Demo3 {
+      	public static void main(String[] args) {
+      		int num = 10;
+      		boolean ret = 10 > 5 && num++ > 10;
+      		
+      		
+      		System.out.println("num : " + num); // 11
+      		System.out.println("ret : " + ret); // F --执行完判断后再执行自增
+      		
+      		int num1 = 10;
+      		boolean ret1 = 10 > 15 && num++ >= 10;
+      		/*
+      		断路原则问题：
+      			逻辑与断路原则问题
+      			在逻辑与表达式中，出现第一个为false条件时，整个表达式结果已经明确，不需要继续执行--节约计算资源，提高效率。
+      		*/
+      		System.out.println("num1 : " + num1); // 10
+      		System.out.println("ret1 : " + ret1); // F
+      		
+      		int num2 = 10;
+      		boolean ret2 = 10 > 5 || ++num2 > 5;
+      		/*
+      		断路原则问题：
+      			逻辑或断路原则问题
+      			在逻辑或表达式中，出现第一个为true条件时，整个表达式结果已经明确，不需要继续执行--节约计算资源，提高效率。
+      		*/
+      		System.out.println("num2 : " + num2); // 10 
+      		System.out.println("ret2 : " + ret2); // T
+      	}
+      }
+      ```
    
+      
+
+#### 控制台输入
+
+1. 从键盘上获取用户录入的数据
+
+   ```
+   1. 导包
+   	import java.util.Scanner;
+   	class Demo1 {}
+   	
+   2. 获取Scanner的变量,扫描器的一个变量
+   	Scanner sc = new Scanner(System.in);
+   	
+   3. 使用Scanner其中的方法
+   	获取int类型 sc.nextInt();
+   	获取double类型 sc.nextDouble();
+   	获取String类型 sc.next(); sc.nextLine();
+   	获取一个char类型 sc.next().charAt(0); sc.nextLine().charAt(0);
+   	
+   ```
+
+2. 代码
+
+   ```java
+   // 导包，让当前代码拥有可以使用Scanner的能力
+   import java.util.Scanner;
    
-   #### 分支结构
-   
-   
-   
-   
+   class Demo4 {
+   	public static void main(String[] args) {
+   		/*
+   		int num = 0;
+   		Scanner sc = new Scanner(System.in);
+   		
+   		System.out.println("请输入一个整数：");
+   		num = sc.nextInt();
+   		
+   		System.out.println("num : " + num);
+   		*/
+   		char ch = '\0'; // 控制符
+   		Scanner sc = new Scanner(System.in);
+   		
+   		System.out.println("请输入一个字符：");
+   		ch = sc.next().charAt(0);
+   		
+   		System.out.println("ch : " + ch);
+   	}
+   }
+   ```
+
+#### 分支结构
+
+基本if选择结构
+
+```java
+if(/* 布尔类型的表达式 true or false */){
+    // 语句体
+}
+// 后续代码
+
+/*
+执行流程
+	首先判断布尔类型的表达式 true 还是false
+	true 先执行语句体。再执行后续代码
+	false 直接执行后续代码
+*/
+
+class Demo5 {
+	public static void main(String[] args) {
+		boolean flag = false;
+		
+		if (flag) {
+			System.out.println("语句体");
+		}
+		
+		System.out.println("后续代码");
+	}
+}
+```
+
+if-else选择结构
+
+```java
+if(/* 布尔类型的表达式 */){
+    // true语句体
+}else {
+	// false语句体
+}
+
+/*
+执行流程：
+	首先判断if后的布尔类型数据是什么
+	如果是true，执行true语句体
+	如果是false，执行false语句体
+*/
+
+class Demo6{
+	public static void main(String[] args) {
+		boolean flag = true;
+		
+		if (flag) {
+			System.out.println("true语句块");
+		}else {
+			System.out.println("false语句块");
+		}
+		
+		System.out.println("后续代码...");
+	}
+}
+```
+
+if - else  if选择结构
+
+```java
+/*
+学生成绩划分
+	>= 90 优秀
+	>= 80 良好
+	>= 60 合格
+	< 60 不合格
+*/
+if(/* 布尔类型的表达式 */){
+    // 处理方式1
+}else if {
+	// 处理方式2
+}else if {
+	// 处理方式3
+}else {
+	// 无匹配项处理方式
+}
+
+/*
+执行流程：
+	使用已有条件匹配if之后的布尔条件
+	匹配到任何一个布尔条件，执行对应结果，结束判断结果，然后执行后续代码
+	如果没有任何一个条件匹配，执行else里面的语句，然后执行后续代码
+*/
+
+```
+
+嵌套if选择结构
+
+
+
+seitch分支结构
+
+
+
+局部变量
+
+
+
+
+
+
 
 
 
