@@ -601,7 +601,7 @@ class VariableTest {
 
 #### 分支结构
 
-基本if选择结构
+##### 基本if选择结构
 
 ```java
 if(/* 布尔类型的表达式 true or false */){
@@ -629,7 +629,7 @@ class Demo5 {
 }
 ```
 
-if-else选择结构
+##### if-else选择结构
 
 ```java
 if(/* 布尔类型的表达式 */){
@@ -660,13 +660,14 @@ class Demo6{
 }
 ```
 
-if - else  if选择结构
+##### if - else  if选择结构
 
 ```java
 /*
 学生成绩划分
 	>= 90 优秀
 	>= 80 良好
+	>= 70 中等
 	>= 60 合格
 	< 60 不合格
 */
@@ -685,19 +686,154 @@ if(/* 布尔类型的表达式 */){
 	使用已有条件匹配if之后的布尔条件
 	匹配到任何一个布尔条件，执行对应结果，结束判断结果，然后执行后续代码
 	如果没有任何一个条件匹配，执行else里面的语句，然后执行后续代码
+	
+	语法上可以省去else
 */
 
 ```
 
-嵌套if选择结构
+学生成绩代码Demo7
+
+```java
+import java.util.Scanner;
+
+class Demo7 {
+	public static void main(String[] args) {
+		int score = 0;
+		//Scanner扫描器变量
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("请输入学生的成绩：");
+		score = sc.nextInt();
+		
+		// 用户输入数据合法性判断问题
+		if (score < 0 || score > 100) {
+			System.out.println("输入错误");
+			// 程序退出
+			System.exit(0);
+		}
+		//if - else if
+		if (score >= 90) {
+			System.out.println("优秀");
+		} else if (score >= 80) {
+			System.out.println("良好");
+		} else if (score >= 70) {
+			System.out.println("中等");
+		} else if (score >= 60) {
+			System.out.println("及格");
+		} else {
+			System.out.println("不及格");
+		}
+	}
+}
+```
+
+【补充--用于输入数据的合法性判断问题】
+
+```
+在实际要求中，存在生活中的数据合法性和程序运行的语法要求冲突的问题。
+在程序的运行过程中，我们需要对用户输入的数据进行合法性判断，如果用户输入的数据不在合法范围内，需要给予用户提示，并不可以进入正常的代码运行过程中。
+
+对于学生成绩--demo7而言,0~100以外都是不合法的！
+1. 不能大于100 score > 100
+2. 不能小于0 score < 0
+3. 满足任何一项都非法 score > 100 || score < 0
+4. if判断
+```
+
+##### 嵌套if选择结构
+
+```
+
+```
+
+##### switch- case分支结构
+
+```java
+switch (/* 变量|表达式 */) {
+    case 值1:
+        // 处理方式1
+        break;
+    case 值2:
+        // 处理方式2
+        break;
+    default:
+        // 最终处理方式
+        break;
+}
+/*
+执行流程
+	取出switch小括号中的数据匹配对应的case选择
+	如果存在case匹配，执行对应的处理方式
+	如果没有任何的一个case匹配。
+	执行default处理方式。
+
+switch case使用注意事项
+	1. break关键字作用是用于跳出对应的case选项
+	2. break省略后，执行对应的case选择，会继续运行至下一个break或者大括号结尾终止switch - case运行
+	3. 在case选项中不允许出现相同选项，语法不允许
+	4. 在switch-case语句体中，能够执行的有且只有csae 和default后的语句
+	5. default可以省略，按照自己的业务逻辑需要考虑是否省略default选择，default可以处理用户在输入过程中超过case选项的一些特殊情况
+*/
+
+import java.util.Scanner;
+
+class Demo8 {
+	public static void main(String[] args) {
+		int choose = 0;
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("1. 肥宅快乐水");
+		System.out.println("2. 咖啡");
+		System.out.println("3. 果汁");
+		System.out.println("4. 奶茶");
+		System.out.println("请输入您的选择：");
+		choose = sc.nextInt();
+		
+		switch (choose) {
+			case 1:
+				System.out.println("3RM 肥宅快乐水");
+				break;
+			case 2:
+				System.out.println("42RM 咖啡");
+				break;
+			case 3:
+				System.out.println("5RM 果汁");
+				break;
+			case 4:
+				System.out.println("10RM 奶茶");
+				break;
+			default:
+				System.out.println("并没有这一项哦");
+				break;
+				
+		}
+	}
+}
+```
+
+##### 条件运算符/三目运算符
+
+```java
+/*
+格式：
+	条件判断? ture处理方式 : false 处理方式
+*/
+
+class Demo9 {
+	public static void main(String[] args) {
+		// 可以取巧，但不要多次使用
+        int num = 10 > 5 ? 888 : 666;
+		
+		// 类似if - else 结构 但三目运算符局限性很大
+		System.out.println(num); // 888
+	}
+}
+```
 
 
 
-seitch分支结构
-
-
-
-局部变量
+##### 局部变量
 
 
 
