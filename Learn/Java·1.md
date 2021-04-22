@@ -354,7 +354,9 @@ class VariableTest {
 
 
 
-#### 运算符
+## 1.4运算符和分支结构
+
+#### 算术运算符
 
 1. 算术运算符
 
@@ -402,7 +404,83 @@ class VariableTest {
    }
    ```
 
-   测试
+   #### 其他运算符
+   
+   1. 关系运算符
+   
+      ```java
+      /*
+      <  <=  >  >=
+      == != == !=
+      关系运算符的结果有且只有true / false
+      用于在开发中的条件判断使用
+      */
+      
+      class Demo1 {
+      	public static void main(String[] args) {
+      		boolean ret = 10 > 5;
+      		System.out.println(ret); // F  
+      		
+      		ret = 5 >= 5; 
+      		System.out.println(ret); // T 
+      		
+      		ret = 10 < 5;
+      		System.out.println(ret); // F
+      		
+      		ret = 10 <= 5;
+      		System.out.println(ret); // T
+      		
+      		ret = 10 == 5;
+      		System.out.println(ret); // F
+      		
+      		ret = 10 != 5;
+      		System.out.println(ret); // T
+      	}
+      }
+      ```
+   
+   2. 逻辑运算符
+   
+      ```java
+      /*
+      && 
+      	与，并且
+      	同真为真，有假即假
+      ||
+      	或，或者
+      	有真即真，同假为假
+      !
+      	非，取反
+      */
+      
+      逻辑运算符：
+          一般用于组合条件的判断，条件过滤，多情况分析。
+           
+      断路原则
+      ```
+   
+   3. 自增自减运算符
+   
+      ```
+      【注意事项】
+      	1. 自增自减运算符有且只能操作变量！！
+      	2. 
+      	
+      ++ ：
+      -- ：
+      ```
+   
+      
+   
+   4. 
+   
+   
+   
+   #### 分支结构
+   
+   
+   
+   
 
 
 
