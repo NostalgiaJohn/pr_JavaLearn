@@ -743,8 +743,23 @@ class Demo7 {
 
 ##### 嵌套if选择结构
 
-```
-
+```java
+class Demo10 {
+	public static void main(String[] args) {
+		int score = 100;
+		
+		if (score >= 90) {
+			if (score >= 95) {
+				System.out.println("A+");
+			} else {
+				System.out.println("A-");
+			} 
+		} else {
+			System.out.println("A--");
+		}	
+	}
+}
+/* 嵌套最多不超三层 */
 ```
 
 ##### switch- case分支结构
@@ -835,7 +850,29 @@ class Demo9 {
 
 ##### 局部变量
 
+```java
+局部变量：存在于代码块中的变量！
 
+class Demo11 {
+	public static void main(String[] args) {
+		int num = 10;
+		
+		if (num > 5) {
+			// num2 是一个局部变量，有且只能在当前if大括号中使用
+			int num2 = 20;
+			
+			// 可以使用num 其作用范围是整个main方法代码框
+			// 在一个变量的作用域范围内，不能重定义同名变量。
+			// int num = 10;
+			
+		}
+		
+		System.out.println(num);
+		// System.out.println(num2);
+		
+	}
+}
+```
 
 
 
