@@ -275,3 +275,28 @@ public static int getSumOfTwoNumber(int num1, int num2){
 		2. 错误情况，验证代码的健壮性
 ```
 
+```java
+/*
+需求：
+	正整数进行分解质因数操作，得到结果
+方法分析：
+	public static
+	返回值类型：
+		void --打印结果，不难为自己
+	方法名：
+		factoringInt
+	形式参数列表：
+		需要一个int类型--(int num)
+方法声明：
+	public static void factoringInt(int num);
+*/
+/**
+* 对一个int类型数据进行因式分解，并得到结果
+* 
+* @param num int类型数据
+*/
+public static void factoringInt(int num){
+    return num1 + num2;
+}
+```
+
