@@ -6,7 +6,9 @@
 
 # 方法
 
-## 1.方法的好处
+## 1.方法学习
+
+### 1.1方法的好处
 
 ```
 循环能够解决一部分代码复用的问题，但指标不治本。代码依然会出现一下问题
@@ -16,7 +18,7 @@
 
 ```
 
-## 2.main方法
+### 1.2main方法
 
 ```java
 public static void main(String[] args) {
@@ -40,7 +42,7 @@ main：方法名，须符合小驼峰命名法，动宾结构
 */
 ```
 
-## 3.无参数无返回值方法
+### 1.3无参数无返回值方法
 
 ```java
 /*
@@ -64,7 +66,7 @@ public static void bbq() {
 }
 ```
 
-## 4.有参数无返回值方法
+### 1.4有参数无返回值方法
 
 ```java
 /*
@@ -81,7 +83,7 @@ public static void bbq() {
 	方法名：
 		printIntNumber 见名知意，小驼峰命名
 	形参列表：
-		需要打印int类型--int num
+		需要打印int类型--(int num)
 		
 方法声明：
 	public static void printIntNumber(int num);
@@ -109,7 +111,7 @@ public static void printIntNumber(int num) {
 	方法名：
 		printSumOfTwoNumber
 	形式参数列表：
-		这里需要两个int类型--int num1, int num2
+		这里需要两个int类型--(int num1, int num2)
 	
 方法声明：
 	public static void printSumOfTwoNumber(int num1, int num2)
@@ -138,7 +140,7 @@ public static void printSumOfTwoNumber(int num1, int num2) {
 
 
 
-## 5.无参数有返回值方法
+### 1.5无参数有返回值方法
 
 
 
@@ -155,9 +157,104 @@ return关键字
 	需要对应返回的数据，声明对应的返回值类型
 	
 【注意】
-	方法中如果需要返回值，必有一个明确的return
+	方法中如果需要返回值，必须有一个明确的return
+		1. 方法需要返回值，没有return报错
+		2. 方法需要返回值，return存在于一个非必须执行代码中，报错
 	方法中返回值类型是void，那么可以使用return作为方法的结束，但return之后不能有任何数据。
-*/
+	
+需求：
+	give Me Five
+	需要返回一个int类型数据5
 
+方法分析：
+	public static
+	返回值类型：
+		5 是一个int类型
+	方法名：
+		giveMeFive
+	形参：
+		不需要参数--()
+方法声明：
+	public static int giveMeFive()
+*/
+/**
+* 返回一个int类型数据5
+*
+*@return 返回值为int类型数据5
+*
+*/
+public static int giveMeFive() {
+    // return之后的数据回被返回到方法外
+    return 5;
+}
+```
+
+### 1.6有参数有返回值方法
+
+```java
+/*
+需求：
+	计算两个int类型数据之和，返回结果
+方法分析：
+	public static
+	返回值类型：
+		int 够用
+	方法名：
+		getSumOfTwoNumber
+	形式参数列表：
+		需要两个int类型--(int num1, int num2)
+方法声明：
+	public static int getSumOfTwoNumber(int num1, int num2);
+*/
+/**
+* 计算两个int类型数据，并通过返回值返回
+* 
+* @param num1 int类型数据
+* @param num2 int类型数据
+* @return 两个int类型数据之和，返回值类型为int类型
+*/
+public static int getSumOfTwoNumber(int num1, int num2){
+    return num1 + num2;
+}
+```
+
+## 2.方法总结
+
+### 2.1方法的三要素
+
+```
+返回值
+方法名
+形式参数列表
+```
+
+#### 2.1.1 返回值类型
+
+```
+【建议】
+	尽量减少黑盒方法的使用--反馈
+	
+1. 返回值类型需要考虑对应的含义
+	计算结果，状态监控，判断情况...
+2. 选择合适的返回值类型
+	a. 不要答非所问
+	b. 要考虑数据的延展性
+3. 一个方法有且只能有一个返回值*类型*
+```
+
+#### 2.1.2方法名
+
+```
+1. 见名知意，动宾结构，小驼峰命名法
+2. 不允许简拼和拼音
+3. 
+```
+
+#### 2.1.3 形式参数列表
+
+```
+1. 整个方法运行过程中，需要的必要外来数据！
+2. 调用方法时，形式参数列表和实际参数数据类型时完全一致！顺序也要一致。
+3. 考虑好对应的数据类型
 ```
 
