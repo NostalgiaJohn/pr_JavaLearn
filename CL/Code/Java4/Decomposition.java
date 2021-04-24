@@ -35,8 +35,7 @@ class Decomposition {
 	* 对一个int类型数据进行因式分解，并得到结果
 	* 
 	* @param num int类型数据 输入需要因式分解的正整数
-	* @param i int类型数据 记录通过计算得到的因数
-	* @param j int类型数据 记录该方法所需的循环次数
+	* j int类型数据 记录该方法所需的循环次数
 	*/
 	public static void intDecomposition1(int num){
 		int j = 0;

@@ -275,28 +275,23 @@ public static int getSumOfTwoNumber(int num1, int num2){
 		2. 错误情况，验证代码的健壮性
 ```
 
+### 2.3方法封装小技巧
+
+```
+1. 功能单一化！
+	考虑后期的复用性，可移植性，模块化
+2. 减少代码中的return的使用，提高代码阅读性
+3. 找出特定的情况优化情况，提高效率
+```
+
+## 3 文档注释规范
+
 ```java
-/*
-需求：
-	正整数进行分解质因数操作，得到结果
-方法分析：
-	public static
-	返回值类型：
-		void --打印结果，不难为自己
-	方法名：
-		factoringInt
-	形式参数列表：
-		需要一个int类型--(int num)
-方法声明：
-	public static void factoringInt(int num);
-*/
 /**
-* 对一个int类型数据进行因式分解，并得到结果
+* 对于当前的方法的整体解释，可以把方法的分析过程，利害关系
 * 
-* @param num int类型数据
+* @param argumentName 参数名字 对于当前参数的功能解释，提一些要求，有多少个参数就需要多少个@param
+* @return 返回解释值，数据类型，返回值的含义，状态，要求
 */
-public static void factoringInt(int num){
-    return num1 + num2;
-}
 ```
 
