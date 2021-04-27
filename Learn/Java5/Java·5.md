@@ -132,3 +132,251 @@ class Demo3 {
 
 #### 数组和方法之间的关系
 
+```java
+/*
+Java中数组成为方法的参数以及使用方式
+*/
+public static viod main(String[] args) {}
+/*
+格式：
+	public static returnType methodName(arrayType[] arrayName)
+	arrayName是一个数组类型变量，引用数据类型的变量
+*/
+```
+
+###### 相关代码
+
+```java
+class Demo4{
+	public static void main(String[] args) {
+		int[] array = new int[10];
+		
+		// 调用赋值数组中元素的方法
+		// 调用参数是一个数组类型的方法，需要传入的内容是数组名
+		assignIntArray(array);
+		printIntArray(array);
+	}
+	
+	/*
+	需求：
+		赋值一个int类型数组
+	方法分析：
+		public static
+		返回值类型:
+			void 无返回值
+		方法名：
+			assignIntArray
+		形式参数列表;
+			需要一个int类型数组
+			(int[] arr)
+	方法声明：
+		public static void assignIntArray(int[] arr)
+	*/
+	/**
+	* 赋值一个指定的int类型数组
+	* 
+	* @param arr 这里需要的参数是一个int类型数组
+	*/
+	public static void assignIntArray(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = i + 1;
+		}
+	}
+	
+	/*
+	需求：
+		展示一个int类型数组中保存的数据
+	方法分析：
+		public static
+		返回值类型:
+			void 无返回值
+		方法名：
+			printIntArray
+		形式参数列表;
+			展示一个int类型数组中保存的数据
+			(int[] arr)
+	方法声明：
+		public static void printIntArray(int[] arr)
+	*/
+	/**
+	* 展示一个int类型数组中保存的数据
+	* 
+	* @param arr 这里需要一个int类型数组
+	*/
+	public static void printIntArray(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.println("array[" + i +"]=" + arr[i]);
+		}
+	}
+	
+}
+
+```
+
+## 数组算法练习
+
+<center>所有数组都使用int类型</center>
+
+#### 完成一个数组逆序过程
+
+```java
+/*
+静态数组
+	int[] arr = {1,7,3,5,9};
+	逆序完成：
+		{9,5,3,7,1}
+方法的分析：
+	public static
+	返回值类型:
+		void
+	方法名：
+		逆序 reverse
+	形式参数列表：
+		int[] arr
+方法声明;
+	public static void reverse(int[] arr)
+*/
+
+/**
+* 完成对于int类型数组的逆序过程
+* 
+* @param arr int 类型数组
+*/
+public static void reverse(int[] arr) {
+    for (int i = 0; i < arr.length / 2; i++) {
+        int temp = 0;
+        /*
+        arr[0] = arr [9]
+        交换
+        */
+        temp = arr[i];
+        arr[i] = arr[arr.length - 1 -i];
+        arr[arr.length - 1 -i] = temp;
+    }
+}
+```
+
+#### 得到数组最大值下标
+
+```java
+class ArrayMethod2 {
+	public static void main(String[] args) {
+		int[] arr = {1, 3, 5, 7, 19, 2, 4, 19, 8, 10};
+		
+ 		int index = maxIndexOf(arr);
+		System.out.println("index:" + index);
+	}
+	
+	/*
+	需求
+		从int类型数组中找出对应的最大值下标位置
+	方法分析:
+		public static 不要问
+		返回值类型：
+			数组的下标数据类型是int类型
+			int
+		方法名:
+			maxIndexOf
+		形式参数列表：
+			(int[] arr)
+	方法声明：
+		public static int maxIndexOf(int[] arr)
+	*/
+
+	/**
+	* 返回指定int类型数组中最大值的下标位置
+	*
+	* @param arr int类型数组
+	* @return 返回值是最大值所在的下标位置
+	*/
+	public static int maxIndexOf(int[] arr) {
+		// 首先：假定下标为0的元素是数组中最大值
+		int maxIndex = 0;
+		
+		// 因为循环过程中，下标为0的元素没有必要和自己比较
+		// 循环变量从1开始
+		for (int i = 1; i < arr.length; i++) {
+			/*
+			如果发现maxIndex保存的下标对应元素，是小于i的
+			保存对应的i值
+			*/
+			if (arr[maxIndex] < arr[i]) {
+				maxIndex = i;
+			}
+		}
+		
+		return maxIndex;
+	}
+}
+
+
+```
+
+#### 得到数组指定元素下标
+
+返回值中应该考虑数据找不到的情况，返回时应该考虑普通用户的使用。
+
+```java
+class ArrayMethod3 {
+	public static void main(String[] args) {
+		int[] arr = {1,3,453};
+		
+		int index = indexOf(arr,324);
+		if (index >= 0) {
+			System.out.println("index:" + index);
+		} else {
+			System.out.println("Not Found");
+		}
+		
+	}
+	/**
+	* 找出指定数组中，指定元素的下标位置，并通过返回值返回
+	* 
+	* @param arr 指定的int类型数据数组
+	* @param find 指定需要查询的数据
+	* @return 返回值大于等于0；-1表示未找到对应数据
+	*/
+	public static int indexOf(int[] arr, int find) {
+		
+		int index = -1;
+		for (int i = 0; i < arr.length; i++) {
+			if (find == arr[i]) {
+				index = i;
+				break;
+			}
+		}
+		
+		return index;
+	}
+}
+```
+
+#### 给出指定下标的元素
+
+现在不能用-1作为范围超标的提示，考虑终止方法，并告知用户错误。
+
+```java
+class ArrayMethod4 {
+	public static void main(String[] args) {
+		int[] arr = {1,23,4,534,87};
+		System.out.println(get(arr, 2));
+	}
+	/**
+	* 找出数组指定下标的元素
+	* 
+	* @param arr 指定的int类型数组
+	* @param int 指定查询的下标位置
+	* @return 返回对应下标的元素
+	*/
+	public static int get(int[] arr, int index) {
+		if (index < 0 || index > arr.length - 1) {
+			System.out.println("Input Parameter is Invalid");
+			System.exit(0); // 退出方法
+		}
+		
+		return arr[index];
+	}
+	
+}
+```
+
