@@ -1,4 +1,4 @@
-# Java·3
+# Java3
 
 [toc]
 
