@@ -1,0 +1,10 @@
+package com.fs;
+
+public class Demo1 {
+	/*
+	 * ×Ô¶¯²¹Æë£ºmain --> Alt + / 
+	 */
+	public static void main(String[] args) {
+		System.out.println("ÄãºÃ");
+	}
+}
