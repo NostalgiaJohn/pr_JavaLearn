@@ -1,15 +1,10 @@
 package com.fs.a_array;
 
-/**
- * 
- * @author fStardust
- *
- */
 public class Demo {
 	public static void main(String[] args) {
-		int[] arr = {1, 5, 3, 4534, 3, 4, 6};
+		int[] arr = {1, 5, 23, 4534, 3, 4, 6};
 		
-		allIndexOf(arr, 2);
+		allIndexOf(arr, 6);
 	}
 	
 	/*
@@ -35,15 +30,10 @@ public class Demo {
 	 * @param find
 	 */
 	public static void allIndexOf(int[] arr, int find) {
-		int count = 0;
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] == find) {
 				System.out.println(i);
-				count += 1;
 			}
-		}
-		if (count == 0) {
-			System.out.println("没有该值");
 		}
 	}
 }

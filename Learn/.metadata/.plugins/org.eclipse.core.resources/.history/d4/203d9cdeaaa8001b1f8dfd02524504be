@@ -1,10 +1,5 @@
 package com.fs.a_array;
 
-/**
- * 
- * @author fStardust
- *
- */
 public class Demo {
 	public static void main(String[] args) {
 		int[] arr = {1, 5, 3, 4534, 3, 4, 6};
