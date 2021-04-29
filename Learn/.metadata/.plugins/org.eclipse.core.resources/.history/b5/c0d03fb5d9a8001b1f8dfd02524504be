@@ -24,10 +24,6 @@ public class Demo5 {
 	 * 		需要处理一个int类型数组
 	 * 		(int[] arr)
 	 * 
-	 * 增序操作：
-	 * 	只需将该句中的< 改为> 即可
-	 * 		if (arr[index] < arr[j])
-	 * 
 	 *方法声明：
 	 *	public static void selectSort(int[] arr)
 	 */
@@ -43,7 +39,8 @@ public class Demo5 {
 			int index = i;
 			
 			for (int j = i + 1; j < arr.length; j++) {
-				if (arr[index] < arr[j]) {
+//				if (arr[index] < arr[j])
+				if (arr[index] > arr[j]) {
 					index = j;
 				}
 			}

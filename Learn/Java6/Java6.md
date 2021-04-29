@@ -381,23 +381,141 @@ public class Demo3 {
 
 ```
 
-#### 相接三题-数组排序准备
+
+
+----
+
+
+
+#### 选择排序准备--相接三题
 
  找出数组中最大值元素，放到指定位置
 
 ```java
+int[] arr = { 1, 3, 5, 7, 9, 2, 4, 6, 8, 10 };
+System.out.println(Arrays.toString(arr));
 
+// 假设最大值的下标位置为0
+int index = 0;
+
+// 这里一定可以得到最大值所在的下标位置
+for (int i = 1; i < arr.length; i++) {
+	if (arr[index] < arr[i]) {
+		index = i;
+	}
+}
+
+// 交换数据
+if (index != 0) {
+	int temp = arr[0];
+	arr[0] = arr[index];
+	arr[index] = temp;
+}
+
+System.out.println(Arrays.toString(arr));
 ```
 
  接上一题，找出数组中剩余元素的最大值，放到下标为1的位置
 
 ```java
+int index1 = 1;
 
+for (int i = 2; i < arr.length; i++) {
+	if (arr[index1] < arr[i]) {
+		index1 = i;
+	}
+}
+
+if (index1 != 1) {
+	int temp = arr[1];
+	arr[1] = arr[index1];
+	arr[index1] = temp;
+}
+
+System.out.println(Arrays.toString(arr));
 ```
 
 再接上一题，找出数组中剩余元素的最大值，放到下标为2的位置
 
 ```java
+int index2 = 2;
+
+for (int i = 3; i < arr.length; i++) {
+	if (arr[index2] < arr[i]) {
+		index2 = i;
+	}
+}
+
+if (index2 != 2) {
+	int temp = arr[2];
+	arr[2] = arr[index2];
+	arr[index2] = temp;
+}
+
+System.out.println(Arrays.toString(arr));
+```
+
+#### 选择排序
+
+```java
+package com.fs.a_array;
+
+import java.util.Arrays;
+
+public class Demo5 {
+	public static void main(String[] args) {
+		int[] arr = {1, 3, 5, 7, 9, 2, 4, 6, 8, 10};
+		System.out.println(Arrays.toString(arr));
+		
+		selectSort(arr);
+		
+		System.out.println(Arrays.toString(arr));
+	}
+	
+	/*
+	 * 选择排序算法
+	 * 方法分析：
+	 * 	public static
+	 * 	返回值：
+	 * 		void
+	 * 	方法名：
+	 * 		selectSort
+	 * 	形式参数列表：
+	 * 		需要处理一个int类型数组
+	 * 		(int[] arr)
+	 * 
+	 * 增序操作：
+	 * 	只需将该句中的< 改为> 即可
+	 * 		if (arr[index] < arr[j])
+	 * 
+	 *方法声明：
+	 *	public static void selectSort(int[] arr)
+	 */
+	/**
+	 * 选择排序算法
+	 * 
+	 * @param arr 需要进行排序的int类型数据
+	 */
+	public static void selectSort(int[] arr) {
+		// 外层循环控制核心算法的循环次数
+		for (int i = 0; i < arr.length - 1; i++) {
+			// 从index开始找寻极值
+			int index = i;
+			
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[index] < arr[j]) {
+					index = j;
+				}
+			}
+			
+			if (index != i) {
+				int temp = arr[i];
+				arr[i] = arr[index];
+				arr[index] = temp;
+			}
+		}
+	}
+}
 
 ```
 
