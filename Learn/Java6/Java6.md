@@ -10,7 +10,7 @@
 
 限制条件、要求
 
-```
+```java
 /*
 要求：
 	a. 不允许在方法内打印展示
@@ -381,50 +381,6 @@ public class Demo3 {
 
 ```
 
-##### Arrays数组的工具类使用
-
-```
-数组的工具类：
-	提供了数组操作的基本方法
-	sort(int[] arr);
-		快速排序算法
-	binarySearch();
-		二分法查询，要求数组时有序的
-	toString(任何类型数组);
-		把数组内容以一个String类型字符串返回
-		{1, 3, 5, 9} ==> [1, 3, 5, 9]
-```
-
-代码演示
-
-```java
-package com.fs.a_array;
-
-import java.util.Arrays;
-
-public class DemoArrays {
-	public static void main(String[] args) {
-		int[] arr = {1, 3, 5, 7, 9, 2, 4, 6, 8, 10};
-		System.out.println(Arrays.toString(arr));
-		
-		// 快速排序 默认递增
-		Arrays.sort(arr);
-		System.out.println(Arrays.toString(arr));
-		
-		/*
-		 * 二分法查找
-		 * 		1. 数据必须有序，无序情况下不保证查询结果情况
-		 * 		2. 数据未找到，返回负数
-		 * 		3. 多个相同数据的情况下， 不保证找到数据是第几个数据
-		 */
-		int index = Arrays.binarySearch(arr, -5);
-		System.out.println(index);
-	}
-}
-```
-
-
-
 ----
 
 
@@ -559,5 +515,47 @@ public class Demo5 {
 	}
 }
 
+```
+
+##### Arrays数组的工具类使用
+
+```
+数组的工具类：
+	提供了数组操作的基本方法
+	sort(int[] arr);
+		快速排序算法
+	binarySearch();
+		二分法查询，要求数组时有序的
+	toString(任何类型数组);
+		把数组内容以一个String类型字符串返回
+		{1, 3, 5, 9} ==> [1, 3, 5, 9]
+```
+
+代码演示
+
+```java
+package com.fs.a_array;
+
+import java.util.Arrays;
+
+public class DemoArrays {
+	public static void main(String[] args) {
+		int[] arr = {1, 3, 5, 7, 9, 2, 4, 6, 8, 10};
+		System.out.println(Arrays.toString(arr));
+		
+		// 快速排序 默认递增
+		Arrays.sort(arr);
+		System.out.println(Arrays.toString(arr));
+		
+		/*
+		 * 二分法查找
+		 * 		1. 数据必须有序，无序情况下不保证查询结果情况
+		 * 		2. 数据未找到，返回负数
+		 * 		3. 多个相同数据的情况下， 不保证找到数据是第几个数据
+		 */
+		int index = Arrays.binarySearch(arr, -5);
+		System.out.println(index);
+	}
+}
 ```
 

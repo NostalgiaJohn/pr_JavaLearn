@@ -24,11 +24,11 @@ Eclipse开发环境选择
 
 创建Java项目
 
-![创建Java项目](E:\ProgramLearning\JavaLearn\Learn\Java6\img\创建Java项目.png)
+![创建Java项目](.\img\创建Java项目.png)
 
 创建Package
 
-![创建Package](E:\ProgramLearning\JavaLearn\Learn\Java6\img\创建Package.png)
+![创建Package](.\img\创建Package.png)
 
 创建Java文件：
 
@@ -36,7 +36,7 @@ Eclipse开发环境选择
 在新建的包上右键，创建Class。
 ```
 
-![创建Java文件](E:\ProgramLearning\JavaLearn\Learn\Java6\img\创建Java文件.png)
+![创建Java文件](.\img\创建Java文件.png)
 
 Eclipse修改工作目录
 
@@ -44,7 +44,20 @@ Eclipse修改工作目录
 
 
 
-## 初期使用问题：
+#### Eclipse查看导入Java源代码
+
+```
+按住Ctrl键点击代码中想要查看源码的代码
+即可跳转至源代码
+
+若无，课通过下图方法加载。
+```
+
+Eclipse导入Java源代码
+
+![Eclipse导入Java源代码](.\img\Eclipse导入Java源代码.png)
+
+## 初期使用问题
 
 ```
 tab 键 在文档注释中 按一下是一个空格，第二下是四个空格，有些别扭
