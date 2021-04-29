@@ -4,6 +4,7 @@ package com.fs.a_array;
  * 【重点】
  * 
  * @author fStardust
+ *
  */
 public class Demo1 {
 	public static void main(String[] args) {
@@ -21,6 +22,7 @@ public class Demo1 {
 			System.out.println(indexArr[i]);
 		}
 	}
+	
 	/*
 	要求：
 		a. 不允许在方法内打印展示
@@ -103,3 +105,11 @@ public class Demo1 {
 	}
 	
 }
+
+
+
+
+
+
+
+

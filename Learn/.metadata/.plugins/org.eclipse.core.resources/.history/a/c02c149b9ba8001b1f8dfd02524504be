@@ -4,23 +4,25 @@ package com.fs.a_array;
  * 【重点】
  * 
  * @author fStardust
+ *
  */
 public class Demo1 {
 	public static void main(String[] args) {
-		int[] arr = {1, 3, 5, 6, 1, 6 , 564, 3 , 4, 5, 2, 7};
+		int[] arr = {1, 3, 5, 6, 1};
 		int[] indexArr = new int[arr.length];
 		
-		int count = allIndexOf(arr, indexArr, 3);
+		int count = allIndexOf(arr, indexArr, 7);
 		
 		// count=0时，可知输入非法，输出提示
 		if (count == 0) {
-			System.out.println("没有该值");
+			System.out.println("该值找不到");
 		}
 		// count是查询到的指定元素个数，同时可以利用循环,在indexArr数组中找到保留的元素--下标
 		for (int i = 0; i < count; i++) {
 			System.out.println(indexArr[i]);
 		}
 	}
+	
 	/*
 	要求：
 		a. 不允许在方法内打印展示
@@ -103,3 +105,11 @@ public class Demo1 {
 	}
 	
 }
+
+
+
+
+
+
+
+
