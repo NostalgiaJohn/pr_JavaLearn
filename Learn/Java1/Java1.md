@@ -1,8 +1,6 @@
-# Java1
+# Java1·首个Java代码
 
 [toc]
-
-# 首个Java代码
 
 ## 1.HelloWord
 
