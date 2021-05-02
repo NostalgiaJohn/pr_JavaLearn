@@ -33,7 +33,7 @@
 |   类   |            对象            |
 | :----: | :------------------------: |
 |  人类  | 鲁迅，乔布斯（具体的个体） |
-|  狗类  |          忠犬八公          |
+|  狗类  |       忠犬八公,小七        |
 | 汽车类 |          1949红旗          |
 | 电脑类 |       自己的个人电脑       |
 
@@ -148,3 +148,68 @@ System.out.println(person1);
 */
 ```
 
+##### Java中使用类对象调用成员变量
+
+```java
+/*
+int[] arr = new int[10];
+获取数组的容量：
+	arr.length
+	获取一个数组中【的】length属性
+	
+格式：
+	对象名.属性名、成员变量名
+	. ==> 的
+	可以操作取值或者赋值操作。	
+*/
+// 通过Person类对象 person调用类内成员变量
+// 【赋值】Person；类对象person中对应的成员变量
+person.name = "乔布斯";
+person.age = 26;
+person.gender = '男';
+
+// 【取值】展示Person类对象person中保存的成员变量数据
+System.out.println("Name:" + person.name);
+System.out.println("Age:" + person.age);
+System.out.println("Gender" + person.gender);
+```
+
+##### Java中使用类对象调用成员方法
+
+```java
+/*
+得到一个Scanner类对象sc
+Scanner sc = new Scanner(System.in);
+使用以下方法：
+	sc.nextInt();
+	sc.nextFloat();
+	sc.nextLine().charAt(0);
+	
+格式：
+	类对象.方法名(必要的参数);
+	. ==> 的
+*/
+// 通过Person类对象person调用类内成员方法
+person.eat("烤羊排");
+person.sleep();
+```
+
+##### 类对象内存分析图
+
+![类对象内存分析图](.\img\类对象内存分析图.png)
+
+#### 类对象内存转移问题
+
+```java
+dog1.name = "八公";
+dog1.age = 5;
+dog1.gender = '雄';
+
+dog2.name = "小七";
+dog2.age = 2;
+dog2.gender = '雌';
+```
+
+##### 类对象内存转移问题分析图
+
+![类对象内存转移问题分析图](.\img\类对象内存转移问题分析图.png)
