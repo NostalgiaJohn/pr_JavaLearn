@@ -270,6 +270,18 @@ class Tyre
 	尺寸
 ```
 
+代码：
+
+```
+代码文件位于.\Code\com.fs.c_car\
+MainProject.java	// main主类
+Car.java	// 汽车类 
+Engine.java		// 发动机类
+Tyre.java		// 轮胎类
+```
+
+
+
 #### 匿名函数
 
 解决【电脑及维修店案例】中的代码问题
