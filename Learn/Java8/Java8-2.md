@@ -62,3 +62,88 @@ super关键字调用父类的构造方法：
 	3. super调用构造方法，必须在当前构造方法的第一行
 ```
 
+#### 方法的重写
+
+	需求:
+		父类的方法不适用子类的情况，子类需要自定义方法
+	
+	重写意义：
+		在没有增加新方法名的情况下，重写方法题内容，降低开发压力
+		
+	@Override
+		严格格式检查--可以删，但不建议
+		要求重写方法的和父类中对应方法声明完成一致，
+		包括：返回值类型，方法名和形式参数列表
+#### abstract关键字--解决重写和继承的问题
+
+```
+解决重写和继承的问题：
+    子类继承父类可以直接使用父类的方法，
+    但是在实际情况中 
+        (例如LOL中英雄父类--跟具体英雄子类的情况下)：
+        我们可以发现父类的方法是一定不能在子类中使用的
+        但是又没有一个强制要求(交流沟通不便)
+
+    需求：
+    	从语法约束，强制要求子类重写父类的方法
+
+abstract修饰的方法：
+	要求子类强制重写
+	让集成开发环境帮助我们自动生成代码
+
+
+abstract使用重点
+	-->代码位于：.\Code\com.fs.f_extends\Demo2
+第一个错误                                                               
+	Abstract methods do not specify a body                             
+	abstract修饰的方法不能有方法体                                                  
+快速修复提示：快捷键ctrl+1                                                    
+	Remove method body                                                 
+                                                                    
+第二个错误：                                                              
+	The abstract method Q in type LOLHero can only be defined by an abs
+	在LOLHero中使用abstract修饰的方法Q，只能定义在abstract修饰的类内                       
+快速修复提示：                                                             
+	Make Type 'LOLHero' abstract                                       
+                                                                    
+第三个错误：                                                              
+	The type Yasuo must implement the inherited abstract method LOLHero
+	子类（亚索类）必须实现继承而来的abstract LOLHero.Q()方法                             
+快速修复提示：                                                             
+	Add unimplemented method                                           
+	添加没有实现的父类中abstract方法
+
+abstract使用总结:
+	1. abstract不能修饰一个方法体
+	2. abstract修饰的方法必须定义在abstract修饰的类内或者interface接口内
+	3. 一个普通类【非abstract】修饰的类，继承了一个abstract类，那么必须实现在abstract类内的所有abstract，强制要求
+	4. 如果一个abstract A类继承另一个abstract B类，A类可以选择实现B类中abstract方法。
+	5. abstract修饰的类内允许普通方法
+	6. abstract修饰的类不能创建自己的类对象！！！
+	【原因】
+		abstract修饰的类内有可能存在abstract修饰的方法，
+		而abstract修饰的方法是没有方法体的，
+		如果说创建了abstract修饰类对应的对象，不能执行没有方法体的abstract方法
+	7. 一个类内没有abstract修饰的方法，那么这个类定义成abstract类是无意义的！
+```
+
+#### final关键字--最终的
+
+```
+final修饰的成员变量
+	final修饰的成员变量定义时必须初始化，并且赋值之后无法修改，一般用于类内带有名字的常量使用
+final修饰的成员方法
+	final修饰的成员变量不能被子类重写，为最终方法，可以用于一些安全性方法的定义
+final修饰的局部变量
+	final修饰的局部变量一旦被赋值，不能修改！
+final修饰的类
+	final修饰的类没有子类，不能被继承。
+	abstract修饰的类不能被final修饰。
+```
+
+#### static关键字【重点】
+
+##### static修饰成员变量
+
+
+
