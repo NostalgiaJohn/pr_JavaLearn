@@ -262,7 +262,7 @@ System.out.println(singleDog3.info);
 	生命周期一致，调用方式一致
 ```
 
-##### 类变量和类方法
+##### [补充]类变量和类方法
 
 ```
 类变量 ==> 静态成员变量
@@ -272,5 +272,113 @@ System.out.println(singleDog3.info);
 面试题
 	类方法中是否可以使用成员变量?
 	答：类方法可以使用当前类内的静态成员变量，但是不允许使用非静态成员变量
+```
+
+##### static修饰静态成员方法用途
+
+```
+特征：
+	1. 摆脱类对象，效率高，节约内存空间，提高开发效率
+	2. 类内成员变量和成员方法都不可以使用，但是不影响使用外来数据。
+	3. 静态成员方法通常用于工具类的封装使用。
+
+Arrays数组工具类
+	sort排序方法
+	binarySearch 二分法查询方法
+	toString 数组内容字符串展示返回方法
+```
+
+代码
+
+```java
+package com.fs.a_static;
+
+import java.util.Arrays;
+
+/**
+ * 自定义数组工具类
+ * 工具类当中大多数方法，都是静态方法
+ * 
+ * @author fStardust
+ *
+ */
+class MyArrays {
+	/**
+	 * 数组工具类，数组逆序方法
+	 * 
+	 * @param arr 这里需要一个int类型数组
+	 */
+	public static void reverse(int[] arr) {
+		for (int i = 0; i < arr.length / 2; i++) {
+			int temp = arr[i];
+			arr[i] = arr[arr.length - 1 - i];
+			arr[arr.length - 1 - i] = temp;
+			
+		}
+	}
+}
+public class Demo1 {
+	public static void main(String[] args) {
+		int[] arr = {1,3,4,56,8};
+		
+		MyArrays.reverse(arr);
+		
+		System.out.println(Arrays.toString(arr));
+	}
+}
+
+```
+
+##### static修饰的静态代码块
+
+```
+特征:
+	1. static修饰的静态代码块，不能使用this关键字，不能使用类内的非静态成员
+	2. static修饰的静态代码块，可以使用类内的其他静态成员
+	3. static修饰的静态代码块中，定义的变量都是局部变量，静态代码块。首先是一个代码块，拥有代码块的特征，其次才是通过static修饰之后，可以随着类文件的加载直接运行，有且只运行一次
+	static {
+		int num = 10;
+		num = 20;
+	}
+```
+
+## 接口
+
+#### 生活中的接口
+
+```
+生活中比较常见的接口:
+	USB接口，Type-C, 3.5MM, Lighting接口, HDMI, VGA, SATA, M.2, DisplayPort，雷电口……
+	
+接口作用举例：
+	USB接口 USB-A
+	1. 鼠标连接，键盘连接，声卡连接，U盘，移动硬盘……
+	2. 规范：都是USB设备
+	3. 设备本身决定了，要做什么事情。
+```
+
+#### Java中接口使用
+
+```
+格式：
+	interface 接口名 {
+		成员变量
+		成员方法
+	}
+
+类【遵从】接口
+	implements
+	class 类名 implements 接口 {
+	
+	}
+
+接口中成员变量和成员方法缺省属性原因
+	从生活角度
+	USB接口规定了尺寸和连接方式，但是该接口做什么内容，是由设备决定的！！！
+	尺寸是固定 ==> 成员变量 缺省属性是public static final
+	
+	接口不管设备做什么事情，但是规定连接方式 ==> 成员方法，需要设备自己完成 
+	缺省属性 public abstract修饰
+	(公开未完成/公开需重写)
 ```
 
