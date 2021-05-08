@@ -282,10 +282,7 @@ System.out.println(singleDog3.info);
 	2. 类内成员变量和成员方法都不可以使用，但是不影响使用外来数据。
 	3. 静态成员方法通常用于工具类的封装使用。
 
-Arrays数组工具类
-	sort排序方法
-	binarySearch 二分法查询方法
-	toString 数组内容字符串展示返回方法
+
 ```
 
 代码
