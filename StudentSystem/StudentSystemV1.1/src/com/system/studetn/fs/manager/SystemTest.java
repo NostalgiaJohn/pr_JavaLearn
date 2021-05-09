@@ -50,7 +50,6 @@ public class SystemTest {
 		studentManager.show();
 	}
 	
-	
 	@Test
 	public void testInsert() {
 		StudentManager studentManager = new StudentManager();
@@ -77,7 +76,6 @@ public class SystemTest {
 		
 		studentManager.show();
 	}
-	
 	
 	@Test
 	public void testRomve() {
@@ -107,5 +105,55 @@ public class SystemTest {
 		
 		System.out.println();
 		studentManager.show();
+	}
+
+	@Test
+	public void testModify() {
+		StudentManager studentManager = new StudentManager();
+		
+		studentManager.add(new Student());                         
+		studentManager.add(new Student());                         
+		studentManager.add(new Student());                         
+		studentManager.add(new Student());                         
+		studentManager.add(new Student());                         
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		
+		studentManager.add(7,new Student("张三", 16, '男', 99, 95, 98));
+		
+		studentManager.modify(6);
+		
+		System.out.println();
+		studentManager.show();
+	}
+
+	@Test
+	public void testSort() {
+		StudentManager studentManager = new StudentManager();
+		                      
+		studentManager.add(new Student("张三", 116, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 126, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 163, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 1, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 13, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 16, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 12, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 13, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 14, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 15, '男', 99, 95, 98));
+		studentManager.add(new Student("张三", 19, '男', 99, 95, 98));
+		
+		studentManager.selectSortByAgeDesc();
 	}
 }

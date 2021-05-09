@@ -66,7 +66,7 @@ public class Student {
 	}
 
 	public int getId() {
-		return id;
+		return id; 
 	}
 
 	public void setId(int id) {
@@ -107,7 +107,7 @@ public class Student {
 		this.totalScore -= this.mathScore;
 		
 		// 2. 加上现有数学总分
-		this.totalScore += this.mathScore;
+		this.totalScore += mathScore;
 		
 		this.mathScore = mathScore;
 	}
@@ -119,7 +119,7 @@ public class Student {
 	public void setChnScore(int chnScore) {
 		// 参考数学成绩修改方法  
 		this.totalScore -= this.chnScore;
-		this.totalScore += this.chnScore;
+		this.totalScore += chnScore;
 		
 		this.chnScore = chnScore;
 	}
@@ -131,8 +131,7 @@ public class Student {
 	public void setEngScore(int engScore) {
 		// 参考数学成绩修改方法 
 		this.totalScore -= this.engScore;
-		this.totalScore += this.engScore;
-		
+		this.totalScore += engScore;
 		this.engScore = engScore;
 	}
 
