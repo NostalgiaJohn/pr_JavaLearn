@@ -12,6 +12,8 @@
 
 
 
+----
+
 English version goes [here](./README.md).
 
 `JavaLearn`是笔者个人的`Java`学习历程。
