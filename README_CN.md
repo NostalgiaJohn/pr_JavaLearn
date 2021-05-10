@@ -2,7 +2,15 @@
 
 ---
 
-![java-learn](https://i.loli.net/2021/05/09/8jp5qHy26lrBz4L.png)
+<img src="https://i.loli.net/2021/05/10/ekDavCf9KxPN8Ri.png" align='left'>
+
+
+
+
+
+
+
+
 
 English version goes [here](./README.md).
 
