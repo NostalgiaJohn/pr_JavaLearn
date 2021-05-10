@@ -38,19 +38,29 @@
 
 基础知识学习笔记按照知识点记录在[Learn](https://github.com/fStardust/JavaLearn/tree/main/Learn)文件夹内各Java~n~ 内。
 
+相关代码位于同级目录下的`Code`文件夹内。
+
 具体知识点分布如下：
 
-- Java1·首个Java代码
-- Java2·运算符与选择结构
-- Java3·循环结构和方法初识
-- Java4·方法
-- Java5·数组及相关练习
-- Java6·数组练习和初识排序
-- Java7·初识面向对象
-- Java8·面向对象三大特征
-- 
+- Java1·[首个Java代码](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java1/Java1.md)
+- Java2·[运算符与选择结构](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java2/Java2.md)
+- Java3·[循环结构和方法初识](https://github.com/fStardust/JavaLearn/tree/main/Learn/Java3/Java3.md)
+- Java4·[方法](https://github.com/fStardust/JavaLearn/tree/main/Learn/Java4/Java4.md)
+- Java5·[数组及相关练习](https://github.com/fStardust/JavaLearn/tree/main/Learn/Java5/Java5)
+- Java6·[数组练习和初识排序](https://github.com/fStardust/JavaLearn/tree/main/Learn/Java6/Java6.md)
+- Java7·[初识面向对象](https://github.com/fStardust/JavaLearn/tree/main/Learn/Java7/Java7.md)
+- Java8·[面向对象三大特征](https://github.com/fStardust/JavaLearn/tree/main/Learn/Java8) 
+  - [封装](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java8/Java8-1.md)
+  - [继承](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java8/Java8-2.md)
+  - [多态](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java8/Java8-3.md)
+  - [补充知识及相关面试题](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java8/Java8-4.md)
+- Java9·[异常](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java9/Java9.md)
+- Java10·[范型](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java10/Java10.md)
 
+#### 项目学习
 
+- [学生管理系统](https://github.com/fStardust/JavaLearn/tree/main/StudentSystem)
+  - [学会管理系统学习文档](https://github.com/fStardust/JavaLearn/blob/main/StudentSystem/StudentSystem-Learn.md)
 
 
 
