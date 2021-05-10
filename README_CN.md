@@ -1,8 +1,8 @@
-# JavaLearn
+# Java Learn
 
 ---
 
-<img src="https://i.loli.net/2021/05/10/ekDavCf9KxPN8Ri.png" align='left'>
+![Java-Learn](https://i.loli.net/2021/05/10/ekDavCf9KxPN8Ri.png)
 
 
 
