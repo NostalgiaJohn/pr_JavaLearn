@@ -137,10 +137,7 @@ interface MyComparator {
 
 Anonymous Inner Type  (没有名字的类！)
 
-```
-
-
-```
+![匿名内部类](C:/Users/pc/Desktop/匿名内部类.png)
 
 
 
