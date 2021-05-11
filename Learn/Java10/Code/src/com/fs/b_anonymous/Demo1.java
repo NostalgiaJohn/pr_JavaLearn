@@ -1,16 +1,3 @@
-# Java10-2·匿名内部类
-
-[toc]
-
-<center>Anonymous Inner Type </center>
-
-使用匿名内部类的原因:
-
-减少class文件生成，提高效率
-
-`定义实现并创建了一个实现A接口的没有名字的内部对象`
-
-```java
 package com.fs.b_anonymous;
 
 /*
@@ -96,5 +83,3 @@ public class Demo1 {
 		a.test();
 	}
 }
-
-```
