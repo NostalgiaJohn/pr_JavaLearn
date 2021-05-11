@@ -62,6 +62,8 @@
 
 #### 项目学习
 
+项目文件同时也会发布<!--注：项目中间文件同样也会发布；学习阶段的项目文件不会重新开库上传；各项目文件中的README.md写的也不会很详细，主要还是请看对应的学习文档或源码-->
+
 - [学生管理系统](https://github.com/fStardust/JavaLearn/tree/main/StudentSystem)
   - [学会管理系统学习文档](https://github.com/fStardust/JavaLearn/blob/main/StudentSystem/StudentSystem-Learn.md)
 
