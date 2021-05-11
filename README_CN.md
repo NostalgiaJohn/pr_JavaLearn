@@ -55,7 +55,10 @@
   - [多态](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java8/Java8-3.md)
   - [补充知识及相关面试题](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java8/Java8-4.md)
 - Java9·[异常](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java9/Java9.md)
-- Java10·[范型](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java10/Java10.md)
+- Java10·[泛型、匿名内部类和集合](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java10)
+  - [泛型](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java10-1.md)
+  - [匿名内部类](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java10-2.md)
+  - [集合](https://github.com/fStardust/JavaLearn/blob/main/Learn/Java10-3.md)
 
 #### 项目学习
 
