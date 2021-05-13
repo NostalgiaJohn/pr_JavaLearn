@@ -137,9 +137,17 @@ interface MyComparator {
 
 Anonymous Inner Type  (没有名字的类！)
 
-![匿名内部类](C:/Users/pc/Desktop/匿名内部类.png)
+### StudentSystemV1.3
 
+#### 优化代码
 
+添加util包与`MyArrayList.java`
+
+`MyArrayList.java`中是自写的数组列表操作
+
+使用`MyArrayList.java`优化`StudentManager.java` 
+
+提高方法的复用性，以及核心方法的阅读性
 
 ## 【补充知识】
 
