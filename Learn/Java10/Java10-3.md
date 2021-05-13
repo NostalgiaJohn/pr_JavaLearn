@@ -314,6 +314,8 @@ public class Demo3 {
 
 测试代码请见：[Test.java](.\Code\src\com\fs\d_test\test.java)
 
+##### ArrayList性能问题
+
 
 
 
