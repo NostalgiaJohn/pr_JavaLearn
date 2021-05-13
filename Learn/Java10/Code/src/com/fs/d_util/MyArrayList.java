@@ -122,13 +122,39 @@ public class MyArrayList<E> {
 	}
 	
 	/**
+	 * 添加另一个符合当前集合要求的List，到当前集合内 
 	 * 
-	 * 
-	 * @param index  
-	 * @param list
-	 * @return
+	 * @param index 指定插入的下标位置
+	 * @param list 符合当前添加要求的另一个AyArrayList集合
+	 * @return 添加成功返回true
 	 */
 	public boolean addAll(int index, MyArrayList<? extends E> list) {
+		
+		// 用户指定的下标位置
+		if (index < 0 || index >size) {
+			throw new ArrayIndexOutOfBoundsException(index);
+		}
+		
+		ensureCapacity(size + 1);
+		
+		Object[] array = list.toArray();
+		int newSize = array.length;
+		
+		ensureCapacity(size + newSize);
+		
+		// 移动操作
+		for (int i = size -1; i >= index; i--) {
+			elements[i + newSize] = elements[i];
+		}
+		
+		// 存入目标元素
+		for (int i = index; i < index + newSize; i++) {
+			elements[i] = array[i - index];
+		}
+		
+		// 有效元素个数需要修改
+		size += newSize;
+		
 		return true;
 	}
 	
@@ -245,15 +271,64 @@ public class MyArrayList<E> {
 	
 	/**
 	 * 
-	 * 集合1{1, 3, 5, 9}
-	 * 集合2{3, 5} 子集合
-	 * 集合3{5, 3} 不是子集合
+	 * 情况1：
+	 * 	集合1{1,3,5,9}; 集合2{3,5}是子集合, 集合3{5, 3}不是子集合
+	 * 情况2：
+	 * 	集合1{1,3,5,9,3,7,8}; 集合2{3,7}这是子集合, 集合3{5,3}不是子集合
 	 * 
 	 * @param list
 	 * @return
 	 */
 	public boolean containsAll(MyArrayList<?> list) {
-		return false;
+
+		// 判断list是否为空，以及当前list对应的地址是否为null
+		if (null == list || list.isEmpty()) {
+			throw new NullPointerException();
+		}
+		
+		// 1. 计数器 找出list参数集合中下标为0的元素在集合中出现的位置次数
+		int count = 0;
+		boolean flag = true;
+		
+		// 2. 存储当前集合中下标为i的元素和list参数集合中下标为0的元素比较
+		int[] indexArr = new int[this.size];
+		
+		for (int i = 0; i < this.size; i++) {
+			// 在当前集合中下标为i的元素和list参数集合中下标为0的元素比较
+			if (this.get(i).equals(list.get(0))) {
+				indexArr[count] = i;
+				count += 1;
+			}
+		}
+		
+		// 4. 判定是否存在list.get(0)的元素
+		if (0 == count) {
+			return false;
+		}
+		
+		// 5. 进入循环，开始匹配
+		for (int i = 0; i < count; i++) {
+			
+			// 6. 遍历操作当前集合
+			for (int j = indexArr[i] + 1; j < indexArr[i] + list.size(); j++) {
+				
+				// list从下标1开始获取元素
+				int index = 1;
+				if (!this.get(j).equals(list.get(index++))) {
+					flag =  false;
+					break;
+				}
+				
+				flag = true;
+			}
+			
+			if (flag) {
+				break;
+			}
+		}
+		
+		return flag;
+		
 	}
 	
 	/**
