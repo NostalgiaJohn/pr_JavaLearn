@@ -2,7 +2,7 @@
 
 [toc]
 
-#### 使用集合的原因
+### 使用集合的原因
 
 ```
 开发中会使用大量相同数据类型的情况
@@ -216,9 +216,9 @@ public class Demo3 {
 
 ![Iterator出现并发错误原因](https://i.loli.net/2021/05/12/QIbSe3jMwhyt5DP.png)
 
-#### list
+### list
 
-##### `list<E>`集合接口特征和方法
+#### `list<E>`集合接口特征和方法
 
 ```
 特征:
@@ -273,7 +273,7 @@ public class Demo3 {
 				获取数据的范围是 fromIndex <= n < endIndex  要头不要尾
 ```
 
-##### ArrayList可变长数组
+#### ArrayList可变长数组
 
 ```
 特征：
@@ -314,9 +314,127 @@ public class Demo3 {
 
 测试代码请见：[Test.java](.\Code\src\com\fs\d_test\test.java)
 
-##### ArrayList性能问题
+#### ArrayList性能问题
 
+##### 增删慢
 
+```
+增加：
+	1. 增加元素时有可能出现调用grow方法，grow需要进行数组的扩容操作，扩容过程中需要大量的移动和拷贝操作，浪费时间
+	2. 在某一个位置添加元素，会导致从指定位置开始，之后的元素整体向后移动，涉及到移动赋值操作，浪费时间
 
+删除：
+	1. 按照ArrayList可变长数组要求，删除元素之后，之后的内容都需要整体向前移动
+	
+```
 
+##### 补充知识点-内存
+
+```
+内存中的地址
+      1. 内存中的最小单元 字节
+      2. 计算机为了记录标记每一个字节的内存，给内存进行了编号
+      3. 精确查询，唯一性
+      4. 计算机内存按照字节，一个字节对应一个地址，从0开始编号 到 34359738367 (32G
+      内存)
+      5. 计算机通过内存编号访问对应的内存，效率是非常高的！！！
+      6. 按照十进制表示地址编号，效果很差。 这里引入16进制 0x0 ~ 0x7 FFFF FFFF
+      
+null到底是谁?
+     null ==> 0x0 内存中编号为0的地址
+     该地址受到系统保护，任何程序读取，写入0x0地址，系统直接杀死程序
+     一般用于在开发中初始化引用数据类型的变量，利用null报错。NullPointerException
+```
+
+##### 查询快
+
+![数组地址内存分析图](https://i.loli.net/2021/05/13/BSXWQTzoCEPxIdR.png)
+
+### LinkedList
+
+#### LinkedList
+
+```
+底层是一个双向链表
+	链子 自行车链子 船锚
+	
+	自行车链子 
+		维修很方便，取出损坏位子，前后链接搞定！！！ 
+		需要一个一个来找到损坏的位置
+
+链表结构
+	1. 增删快
+	2. 查询很慢很慢很慢
+```
+
+![双向链表结构图例](https://i.loli.net/2021/05/13/4ulzQnmWAr1i32q.png)
+
+#### LinkedList需要了解的方法
+
+```
+LinkedList使用的方法，大部分都是从List接口中遵从实现的方法
+但是有一些特征方法
+	addFirst(E e);
+	addLast(E e); ==> add(E e);
+	
+	E getFirst();
+	E getLast();
+	
+	removeFirst();
+	removeLast();
+
+以上方法组合可以完堆栈队列操作
+	堆
+		先进后出（堆栈操作）
+		addLast(E e); E getLast(); removeLast();
+	队列
+		先进先出
+		addLast(E e); E getFrist(); removeFirst(); 
+```
+
+#### 自定义完成MyLinkedList
+
+##### 节点
+
+```
+a. 向前的引用
+b. 存储元素的引用
+c. 向后的引用
+
+class Node {
+	private Node prev;
+	private Node next;
+	private Object value;
+	
+	// 构造方法存储元素，加入链接
+}
+```
+
+##### 管理节点的MyLinkedList
+
+```
+a. 链表头！！！
+b. 当前链表中有多少个元素。
+
+class MyLinkedList<E> {
+	private Node first;
+	
+	private int size;
+}
+
+要求实现的方法:
+	add(E e);
+	addFirst(E e);
+	addLast(E e);
+	E getFirst();
+	E getLast():
+	E get(int index);
+	removeFirst();
+	removeLast();	
+	remove(int index);
+	remove(Object obj);
+    E set(int index, E);
+    size();
+
+```
 
