@@ -310,6 +310,8 @@ public class Demo3 {
 	Object[] toArray();
 ```
 
+#### 代码实现
+
 详细代码请见：[MyArrayList.java](.\Code\src\com\fs\d_util\MyArrayList.java) 
 
 测试代码请见：[Test.java](.\Code\src\com\fs\d_test\test.java)
@@ -436,5 +438,19 @@ class MyLinkedList<E> {
     E set(int index, E);
     size();
 
+```
+
+#### LinkedList的代码实现
+
+详细代码请见：[MyLinkedList.java](.\Code\src\com\fs\d_util\MyLinkedList.java) 
+
+#### LinkedList的特征
+
+```
+1. 存储数据，非连续空间。
+2. 数据之间通过引用连接，方便遍历和使用
+3. 遍历效率较低，数据非连续空间存储，需要通过引用跳转过程来完成
+4. 删除插入操作效率高，但是注意地址的转移和保存问题。
+5. LinkedList链表当中的操作其实大部分都是和C语言指针一个概念 
 ```
 

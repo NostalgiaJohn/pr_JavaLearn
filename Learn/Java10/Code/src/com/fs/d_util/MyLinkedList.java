@@ -251,17 +251,3 @@ public class MyLinkedList<E> {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
