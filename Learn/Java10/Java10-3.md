@@ -214,7 +214,7 @@ public class Demo3 {
 }
 ```
 
-![Iterator出现并发错误原因](https://i.loli.net/2021/05/12/QIbSe3jMwhyt5DP.png)
+![Iterator出现并发错误原因](C:\Users\pc\Desktop\QIbSe3jMwhyt5DP.png)
 
 ### list
 
@@ -350,7 +350,7 @@ null到底是谁?
 
 ##### 查询快
 
-![数组地址内存分析图](https://i.loli.net/2021/05/13/BSXWQTzoCEPxIdR.png)
+![数组地址内存分析图](C:\Users\pc\Desktop\BSXWQTzoCEPxIdR.png)
 
 ### LinkedList
 
@@ -369,7 +369,7 @@ null到底是谁?
 	2. 查询很慢很慢很慢
 ```
 
-![双向链表结构图例](https://i.loli.net/2021/05/13/4ulzQnmWAr1i32q.png)
+![双向链表结构图例](C:\Users\pc\Desktop\3CevaH7fhxDWKEy.png)
 
 #### LinkedList需要了解的方法
 
