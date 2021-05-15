@@ -53,41 +53,47 @@ Eclipse Alt + Shift + S
 ##### 重写equals方法
 
 ```java
-/**                                                                         
- * 重写equals方法                                                               
- * 	1. 判断两个对象是不是同一个对象                                                       
+/** 
+ * 重写equals方法 
+ * 	1. 判断两个对象是不是同一个对象
  * 		如果调用方法的类对象和传入参数类对象地址一致，那就是同一个对象，返回true 
- * 	2. equals方法参数是Object类型，即任何类型的数据都可以作为参数                                  
- * 		两个数据类型不一致，不需要进行比较操作                                                 
- * 		--> 判断数据类型是否一致                                                      
+ * 	2. equals方法参数是Object类型，即任何类型的数据都可以作为参数
+ * 		两个数据类型不一致，不需要进行比较操作 
+ * 		--> 判断数据类型是否一致
  * 		--> 使用关键字instanceof，同数据类型继续运行，非同类型返回false                           
- * 		格式:                                                                 
- * 			类对象instanceof 类名                                                
+ * 		格式:    
+ * 			类对象instanceof 类名 
  *           
- * 	3. 判断对象中保存的数据                                                           
- * 		Student中我们比较id, name, age, gender即可                                 
- * 		                                                                    
- */                                                                         
-@Override                                                                   
-public boolean equals(Object obj) {                                         
-	// 1. 判断是否是同地址对象                                                        
-	if (this ==  obj) {                                                     
-		return true;                                                        
-	}                                                                       
-	                                                                        
-	// 2. 类型是否一致                                                            
-	if (!(obj instanceof Student)) {                                        
-		return false;                                                       
-	}                                                                       
-	                                                                        
-	// 数据类型强制转换                                                             
-	Student stu = (Student) obj;                                            
-	return this.id == stu.id                                                
-			// this.name.equals(stu.name) 该equals方法是String类equals方法         
-			&& this.name.equals(stu.name)                                   
-			&& this.age == stu.age                                          
-			&& this.gender == stu.gender;                                   
-}                                                                           
+ * 	3. 判断对象中保存的数据
+ * 		Student中我们比较id, name, age, gender即可
+ *
+ */ 
+@Override  
+public boolean equals(Object obj) {
+	// 1. 判断是否是同地址对象
+	if (this ==  obj) {
+		return true;
+	}  
+    
+	// 2. 类型是否一致
+	if (!(obj instanceof Student)) {
+		return false;         
+	}
+    
+    /*
+     另一种方法：涉及反射
+     if (null == obj || o.getClass != Student.class) {
+     	return false;
+     }
+     */
+	// 数据类型强制转换
+	Student stu = (Student) obj; 
+	return this.id == stu.id 
+			// this.name.equals(stu.name) 该equals方法是String类equals方法
+			&& this.name.equals(stu.name)  
+			&& this.age == stu.age 
+			&& this.gender == stu.gender; 
+}
 ```
 
 #### hashCode方法
