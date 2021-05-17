@@ -130,3 +130,4 @@ interface Comparator<T> {
 ```
 
 **Comparator使用要高于Comparable使用**
+
