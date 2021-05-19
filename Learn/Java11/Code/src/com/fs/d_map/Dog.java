@@ -38,8 +38,5 @@ public class Dog {
 	public int compareTo(Dog o) {
 		return this.age - o.age;
 	}
-	*/
-	
-	
-	
+	*/	
 }

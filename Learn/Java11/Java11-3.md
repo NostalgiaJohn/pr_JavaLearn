@@ -145,3 +145,257 @@ public class Demo3 {
 
 ```
 
+## File类
+
+#### `File`类是什么
+
+```
+SUN公司提供给开发者操作文件和文件夹的一个类对象。
+	Java中万物皆对象，计算机中万物皆文件
+
+获取File类有三种方式【Constructor 构造方法】
+	File(String pathName);
+		根据对应的文件路径创建获取对应的File类对象，可以是文件，可以是文件夹。
+	File(String parent, String child);
+		根据对应的父目录文件夹路径，以及子文件名或者子文件夹名，创建对应的File类对象
+	File(File parent, String child);
+		根据对应的父目录文件夹File类对象，以及子文件名或者子文件夹名，创建对应File类对象
+
+路径:
+	相对路径
+		. 当前工作目录
+		..  父目录/上级目录
+		针对于当前工作目录和其他文件或者文件夹之间的最小路径
+	绝对路径
+		唯一的路径
+		Windows操作系统；每一个盘符都是一个根目录开始
+			C:/Windows/System32
+		Linux UNIX macOS 
+			存在一个 / 根目录文件
+			/user/pc/appliction
+
+路径有一个很重要的东西
+	路径分隔符
+	Windows 分隔符 默认是 \
+	Linux UNIX macOS 分隔符 默认是 / 
+	
+	Windows是支持Linux分隔符 / 
+	
+	根据当前系统来区分不同的分隔符 File.separatorChar 
+```
+
+代码
+
+```java
+package com.fs.e.file;
+
+import java.io.File;
+
+public class Demo1 {
+	public static void main(String[] args) {
+		/*
+		 * 1. 路径分隔符\\ or / or File.separator
+		 * 2. 操作文件必须带有文件的后缀名
+		 */
+		File file = new File("E:\\ProgramLearning");
+		File file1 = new File("E:" + File.separator + "ProgramLearning");
+		
+	}
+}
+
+```
+
+
+
+#### 创建文件和文件夹
+
+```
+boolean createNewFile();
+	通过File类对象调用，创建对应File类对象中保存的路径的普通文件。
+	创建成功返回true，创建失败返回false
+	返回false的原因:
+		1. 路径不合法。
+		2. 对应的文件夹没有写入权限。
+		3. 对应文件已经存在。
+
+boolean mkdir();
+	通过File类对象调用，创建对应File类对象中保存路径的文件夹
+	创建成功返回true，创建失败返回false
+	返回false的原因
+		1. 路径不合法。
+		2. 对应的文件夹没有写入权限。
+		3. 对应当前的文件夹已经存在。
+
+boolean mkdirs();
+	通过File类对象创建其中保存的文件目录的所有对应文件夹，包括中间路径
+	如果创建失败，返回false
+
+boolean renameTo(File dest);
+	通过File类对象调用，转为目标File类对象dest
+	文件/文件夹移动，重命名
+```
+
+##### 删除文件或者文件夹
+
+```
+boolean delete();
+	通过File类对象调用，删除对应的文件或者文件夹
+	【要求】
+		1. 删除的文件或者文件夹都是直接抹掉数据，不是放入回收站
+		2. 无法删除非空文件夹，文件夹中存在其他内容无法整体删除。
+void deleteOnExit();
+	程序退出时删除对应的文件或者文件夹
+	用于删除程序运行过程中，留下的日志文件，缓冲文件，操作日志...
+```
+
+##### 文件属性判断[有用]
+
+```
+boolean isFile();
+	判断是否是一个普通文件
+boolean isDirctory();
+	判断是否是一个文件夹
+boolean isAbsolute();
+	判断是否使用了绝对路径，跟文件是否存在无关
+boolean isHidden();
+	判断是否是隐藏文件
+boolean exists();
+	判断文件是否存在
+```
+
+##### 获取文件属性
+
+```
+唬人方法
+	以下方法和文件是否存在没有一分钱关系，可以使用字符串操作直接得到我们想要的结果
+	String getPath();
+		获取File类对象保存的路径
+	String getName();
+		获取当前File类对象中保存的文件名或者文件夹名
+	String getParent();
+		获取当前File类对象对应文件或者文件夹的父目录路径
+	String getAbsolutePath();
+		获取当File类对象对应文件或者文件夹的绝对路径
+
+有用方法：
+	long lastModified()
+		获取文件的最后一次修改时间，返回值是一个时间戳类型。
+		从1970年01月01日 00:00:00到现在的秒数。计算机元年
+	long length();
+		获取文件的大小，占用硬盘空间字节数。
+		如果操作的是文件夹，返回0L
+```
+
+##### 列表方法
+
+```
+static File[] listRoots();
+	通过File类调用，获取当前电脑内所有根盘符对象，有且针对于Windows操作系统有效
+
+File[] listFiles();
+	通过File类对象调用，获取当前File类对象对应文件夹下的所有子文件或者子文件夹的File类对象数组
+
+String[] list();
+	通过File类对象调用，获取当前File类对象对应文件夹下的所有子文件或者子文件夹的String类型文件名或者文件夹名字数组
+```
+
+##### FilenameFilter文件名过滤器
+
+```java
+interface FilenameFilter
+	boolean accept(File dir, String name);
+```
+
+###### 源码
+
+```java
+@FunctionalInterface
+public interface FilenameFilter {
+    /**
+     * Tests if a specified file should be included in a file list.
+     *
+     * @param   dir    the directory in which the file was found.
+     * @param   name   the name of the file.
+     * @return  <code>true</code> if and only if the name should be
+     * included in the file list; <code>false</code> otherwise.
+     */
+    boolean accept(File dir, String name);
+}
+```
+
+代码
+
+```java
+package com.fs.e.file;
+
+import java.io.File;
+import java.io.FilenameFilter;
+
+/*
+ * FilenameFilter 过滤器演示
+ */
+public class Demo2 {
+	public static void main(String[] args) {
+		File file = new File("E:\\Code\\c_file");
+		
+		// 使用匿名内部类的匿名对象直接作为方法的参数
+		File[] listFiles = file.listFiles(new FilenameFilter() {
+			
+			@Override
+			public boolean accept(File dir, String name) {
+				/*
+				 * dir是当前操作的文件夹类对象
+				 * name是当前文件夹下的子文件或者子文件夹名字
+				 * 
+				 * 获取对应的java文件
+				 * 		1. 判断是不是普通文件
+				 * 		2. 判断当前文件名是不是.java结尾
+				 */
+
+				return new File(dir, name).isFile()
+						// endsWith字符串方法，判断当前字符串是不是已指定要求结尾
+						&& name.endsWith(".java");
+			}
+		});
+		
+		// Lambda表达式 JDK1.8新特征 
+		File[] listFile = file.listFiles((dir, name) -> 
+			new File(dir, name).isFile() 
+			&& name.endsWith(".java")
+		);
+		
+		for (File file2 : listFile) {
+			
+			System.out.println(file2.getName());
+		}
+	}
+}
+
+```
+
+## 常用API-String
+
+#### String字符串冗余问题
+
+```java
+String str = "孜然肉片";
+str += "麻辣香锅";
+str += "番茄鸡蛋";
+str += "土豆牛肉";
+str += "烤羊排";
+str += "金汤肥牛";
+str += "油麦菜";
+
+System.out.println("这里有几个字符串");
+
+/*
+这里有14个字符串
+	使用双引号包含的字符串都是字符串常量！！！常量的概念中要求不可以修改。
+	双引号包含的字符串都是存在于内存的【数据区】
+	+ 在字符串常量操作时，使用原本的两个字符串拼接之后完成的一个新的字符串常量。
+	
+	这里导致的字符串冗余问题，后期使用StringBuffer StringBuilder来解决问题
+*/
+```
+
+![字符串反编译结果](https://i.loli.net/2021/05/19/RHCsOK4nMreDXL9.png)
