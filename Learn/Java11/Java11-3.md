@@ -373,29 +373,90 @@ public class Demo2 {
 
 ```
 
-## 常用API-String
+## 实例：Java实现文件归档
 
-#### String字符串冗余问题
+```
+实现将杂乱无章的不同类型文件、文件夹；按照类型存放。具体要求见图。
 
-```java
-String str = "孜然肉片";
-str += "麻辣香锅";
-str += "番茄鸡蛋";
-str += "土豆牛肉";
-str += "烤羊排";
-str += "金汤肥牛";
-str += "油麦菜";
-
-System.out.println("这里有几个字符串");
-
-/*
-这里有14个字符串
-	使用双引号包含的字符串都是字符串常量！！！常量的概念中要求不可以修改。
-	双引号包含的字符串都是存在于内存的【数据区】
-	+ 在字符串常量操作时，使用原本的两个字符串拼接之后完成的一个新的字符串常量。
-	
-	这里导致的字符串冗余问题，后期使用StringBuffer StringBuilder来解决问题
-*/
+进阶：归档后，再次归档无操作。
 ```
 
-![字符串反编译结果](https://i.loli.net/2021/05/19/RHCsOK4nMreDXL9.png)
+![原始情况](https://i.loli.net/2021/05/20/elr43C5nKIXhfWQ.png)
+
+![最终情况](https://i.loli.net/2021/05/20/Kf8lHPaUxvhuBD9.png)
+
+代码：
+
+```java
+package com.fs.e_file;
+
+import java.io.File;
+import java.io.IOException;
+
+/**
+ * 文件归档
+ * 	1. 获取对应当前文件的所有子文件和子文件夹list or listFiles
+ * 	2. 遍历判断是普通文件还是文件夹isFile or isDirctory
+ * 	3. 分门别类处理
+ * 		3.1 文件处理
+ * 			3.1.1 获取文件后缀名 substring lastindexOf
+ * 			3.1.2 创建对应当前文件后缀名的全大写文件夹
+ * 			3.1.3 移动文件到指定文件夹
+ * 		3.2 文件夹处理
+ * 			3.2.1 创建subDir文件夹
+ * 			3.2.2 移动文件夹到subDir下
+ * 
+ * @author fStardust
+ *
+ */
+public class CollatFile {
+	public static void main(String[] args) throws IOException {
+		// 目标文件夹的File类对象
+		File file = new File("G:\\1\\c");
+		
+		// 需要创建的文件夹
+		File toBeCreateDir = null;
+		
+		// 判断是否是文件夹
+		if (!file.isDirectory()) {
+			return;
+		}
+		
+		// 当前文件夹已经归档完成，无需再次归档
+		if(new File(file, "1.lock").exists()) {
+			System.out.println("已归档文件");
+			return;
+		}
+		
+		// 当前文件夹下所有子文件和子文件夹的File类对象组
+		File[] listFiles = file.listFiles();
+		
+		// 遍历File类对象数组
+		for (File srcFile : listFiles) {
+			// 如果是普通文件。获取文件后缀名
+			if (srcFile.isFile()) {
+				
+				String fileName = srcFile.getName();
+				String upperSuffix = fileName.substring(fileName.lastIndexOf('.') + 1)
+						.toUpperCase();
+				toBeCreateDir = new File(file, upperSuffix);
+				
+			} else {
+				toBeCreateDir = new File(file, "subDir");
+			}
+			
+			// 创建文件夹
+			toBeCreateDir.mkdir();
+			
+			// 移动文件或文件夹
+			srcFile.renameTo(new File(toBeCreateDir, srcFile.getName()));
+		}
+		
+         // 进阶
+		// 创建一个锁文件
+		new File(file, "1.lock").createNewFile();
+	}
+}
+
+```
+
