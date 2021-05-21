@@ -18,7 +18,7 @@ interface Set<E>
 
 #### HashSet结构
 
-![哈希表存储原理](https://i.loli.net/2021/05/15/atkidoNjne97CXv.png)
+![哈希表存储原理](C:\Users\pc\Desktop\atkidoNjne97CXv.png)
 
 ###### 代码
 
@@ -61,7 +61,7 @@ public class Demo2 {
 
 #### TreeSet树形结构
 
-![Tree树形结构图例](https://i.loli.net/2021/05/15/fVt2reR75kuCBFS.png)
+![Tree树形结构图例](C:\Users\pc\Desktop\fVt2reR75kuCBFS.png)
 
 #### TreeSet存储方式
 
