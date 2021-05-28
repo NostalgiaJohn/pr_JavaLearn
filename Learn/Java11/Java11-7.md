@@ -1,6 +1,8 @@
-# 缓冲流
+# 缓冲流和序列化
 
 [toc]
+
+## 缓冲流
 
 #### 缓冲流有什么作用？
 
@@ -175,4 +177,260 @@ BufferedWriter
 字符缓冲输出流中
 	void newLine(); 换行
 ```
+
+## 序列化
+
+#### 序列化概述
+
+```
+Java中提供了一种序列化操作的方式，用一个字节序列化来表示一个对象，该字节序列化中保存了【对象的属性】，【对象的类型】和【对象的数据】。把字节序列化保存到文件中，就可以做到持久化保存数据内容。
+
+从文件中读取字节序列化数据，可以直接得到对应的对象。
+```
+
+![序列化和反序列化](https://i.loli.net/2021/05/28/Gwd5gFoql93NyMb.png)
+
+##### ObjectOutputStream类
+
+```
+将对象数据序列化，保存到文件中
+
+构造方法 Constructor
+	ObjectOutputStream(OutputStream out);
+		输出字节流对象作为当前方法的参数
+```
+
+##### ObjectInputStream类
+
+```
+从文件中读取被序列化之后的字节数据，提供反序列化操作，得到一个对象。
+
+构造方法 Constructor
+	ObjectInputStream(InputStream in);
+		需要提供一个字节输入流对象来进行操作
+```
+
+##### 【序列化注意事项】
+
+```
+1. 如果一个类需要进行序列化操作，必须遵从。java.io.Serializable。不遵从无法进行序列化操作
+
+2. 序列化之后从文件中读取序列化内容，转换成对应的对象，
+	ClassNotFoundException 对应类没有找到。
+		对应的类型没有导包，不存在...
+	InvalidClassException 类型不一样
+		序列化之后的每一个类都会有一个serialVersionUID，该编号在使用过程中，序列化和反序列化必须一致
+	
+3. transient 修饰的成员变量不能被序列化 
+```
+
+##### 代码
+
+###### Person
+
+```java
+package com.fs.m_objectSerializable;
+
+import java.io.Serializable;
+
+/*
+ * 如果一个类需要进行序列化操作，必须遵从Serializable接口
+ */
+public class Person implements Serializable{
+	/**
+	 * 序列化编号
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private int id;
+	private String name;
+	private int age;
+	// 瞬态修饰成员变量，不能被序列化
+	//	private transient int age;
+	
+	public Person() {}
+
+	public Person(int id, String name, int age) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", age=" + age + "]";
+	}
+}
+```
+
+###### Demo1
+
+```java
+package com.fs.m_objectSerializable;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+public class Demo1 {
+	public static void main(String[] args) {
+		readObject();
+	}
+
+	private static void writeObject() {
+		ObjectOutputStream objectOutputStream = null;
+		try {
+			objectOutputStream = new ObjectOutputStream(new FileOutputStream("D:/ProgramTest/person.txt"));
+			
+			// 序列化对象，并且写入到文件中
+			objectOutputStream.writeObject(new Person(1, "faa", 16));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (objectOutputStream != null) {
+				try {
+					objectOutputStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	private static void readObject() {
+		ObjectInputStream objectInputStream = null;
+		
+		try {
+			objectInputStream = new ObjectInputStream(new FileInputStream("D:/ProgramTest/person.txt"));
+			
+			// 从保存字节序列数据的文件中读取一个对象返回，返回值类型是Object类型
+			// 但是我们知道，这里保存的实际是Person类型，可以进行强转操作
+			Person p = (Person) objectInputStream.readObject();
+			
+			System.out.println(p);
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (objectInputStream != null) {
+				try {
+					objectInputStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}
+
+```
+
+###### Demo2
+
+```java
+package com.fs.m_objectSerializable;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+public class Demo2 {
+	public static void main(String[] args) {
+		readList();
+	}
+
+	private static void readList() {
+		ObjectInputStream objectInputStream = null;
+		
+		try {
+			objectInputStream = new ObjectInputStream(new FileInputStream("D:/ProgramTest/personlist.txt"));
+			
+			ArrayList<Person> list = (ArrayList<Person>) objectInputStream.readObject();
+			
+			for (Person person : list) {
+				System.out.println(person);
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (objectInputStream != null) {
+				try {
+					objectInputStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	private static void writeList() {
+		ArrayList<Person> arrayList = new ArrayList<Person>();
+		
+		arrayList.add(new Person(1, "faa", 60));
+		arrayList.add(new Person(2, "fbb", 55));
+		arrayList.add(new Person(3, "fcc", 45));
+		
+		ObjectOutputStream objectOutputStream = null;
+		
+		try {
+			objectOutputStream = new ObjectOutputStream(new FileOutputStream("D:/ProgramTest/personlist.txt"));
+			
+			objectOutputStream.writeObject(arrayList);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (objectOutputStream != null) {
+				try {
+					objectOutputStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}
+
+```
+
+
 
