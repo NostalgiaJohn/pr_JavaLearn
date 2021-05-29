@@ -208,7 +208,7 @@ public class Demo1 {
 
 ##### 文件读取使用缓冲和非缓冲差距
 
-![文件读取使用缓冲和非缓冲差距](https://i.loli.net/2021/05/22/JYo9mMA4CgaBGsq.png)
+![文件读取使用缓冲和非缓冲差距](C:\Users\21117\Desktop\C5o7bUdMH9pWFJc.png)
 
 ```
 内存的运作速度看做是火箭
@@ -555,7 +555,7 @@ public class Demo1 {
 
 #### 字符流文件拷贝
 
-![字符拷贝图片失败问题](https://i.loli.net/2021/05/23/jockEamBO7KShAF.png)
+![字符拷贝图片失败问题](C:\Users\21117\Desktop\C5o7bUdMH9pWFJc.png)
 
 ```java 
 package com.fs.g_io;

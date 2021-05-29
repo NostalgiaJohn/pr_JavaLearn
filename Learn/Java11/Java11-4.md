@@ -29,7 +29,7 @@ System.out.println("这里有几个字符串");
 */
 ```
 
-![字符串反编译结果](https://i.loli.net/2021/05/19/RHCsOK4nMreDXL9.png)
+![字符串反编译结果](C:\Users\21117\Desktop\RHCsOK4nMreDXL9.png)
 
 #### 字符串比较
 
@@ -63,7 +63,7 @@ public class Demo2 {
 }
 ```
 
-![字符串比较要求](https://i.loli.net/2021/05/21/7vP6DxOlVsIHUiT.png)
+![字符串比较要求](C:\Users\21117\Desktop\C5o7bUdMH9pWFJc.png)
 
 #### 获取方法
 
@@ -182,7 +182,7 @@ public class Demo2 {
 
 #### 补充知识--码点和码点单元
 
-![码点数和码点单元](https://i.loli.net/2021/05/21/kzg8r637YF2QBHn.png)
+![码点数和码点单元](C:\Users\21117\Desktop\RHCsOK4nMreDXL9.png)
 
 > Java字符串由char值系列值序列组成。
 >
