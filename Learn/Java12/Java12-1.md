@@ -119,7 +119,7 @@ public class Demo1 {
 
 
 
-#### Math数学类
+## Math数学类
 
 ```
 Java中一些数学方法
@@ -131,7 +131,7 @@ public static double ceil(double a);
 public static double floor(double a);
 	向下取整
 public static double round(double a);
-	四舍五入
+	四舍五入(本质是 4往下取整，5往上取整)
 public static double random();
 	随机数 0.0 <= n < 1.0
 ```
@@ -139,7 +139,7 @@ public static double random();
 ##### 方法使用
 
 ```java
-package com.qfedu.b_math;
+package com.fs.b_math;
 
 /*
  * Math工具类方法
@@ -183,7 +183,7 @@ public class Demo1 {
 ##### 抽奖小演示
 
 ```java
-package com.qfedu.b_math;
+package com.fs.b_math;
 
 public class Demo2 {
 	public static void main(String[] args) {
@@ -191,13 +191,13 @@ public class Demo2 {
 			double num = Math.random() * 100;
 			
 			if (0.0 <= num && num < 50) {
-				System.out.println("绿色普通卡");
+				System.out.println("普通卡");
 			} else if (50 <= num && num < 80) {
-				System.out.println("蓝色高端卡");
+				System.out.println("高端卡");
 			} else if (80 <= num && num < 98) {
-				System.out.println("紫色传说卡");
+				System.out.println("传说卡");
 			} else {
-				System.err.println("黄金史诗卡");
+				System.err.println("史诗卡");
 			}	
 		}
 	}
@@ -205,9 +205,9 @@ public class Demo2 {
 
 ```
 
-#### 日历时间格式
+## 日历时间格式
 
-##### Date 时期类[逐渐淘汰]
+#### Date 时期类[逐渐淘汰]
 
 ````
 获取当前系统时间
@@ -227,7 +227,7 @@ public class Demo2 {
 		System.currentTimeMillis(); 可以获取当前系统时间戳毫秒数
 ````
 
-##### DateFormat 日期格式类
+#### DateFormat 日期格式类
 
 ```
 DateFormat 是一个abstract修饰的类，用于转换时间格式。
@@ -236,14 +236,14 @@ DateFormat不能直接使用，一般使用DateFormat子类SimpleDataFormat来�
 SimpleDataForma构造方法中需要的参数是一个String，String类型的参数有特定的要求
 ```
 
-| 标识字母(区分大小写) |  对应含义  |
-| :------------------: | :--------: |
-|          y           |     年     |
-|          M           |     月     |
-|          d           |     日     |
-|          H           | 时(24小时) |
-|          m           |     分     |
-|          s           |     秒     |
+| 常用标识字母(区分大小写) |      对应含义       |
+| :----------------------: | :-----------------: |
+|            y             |         年          |
+|            M             |         月          |
+|            d             |         日          |
+|            H             | 时(24小时)h(12小时) |
+|            m             |         分          |
+|            s             |         秒          |
 
 ```
 String format(Date date);
@@ -253,7 +253,7 @@ Date parse(String format);
 	按照指定的匹配规则，解析对应的字符串，返回一个Date数据
 ```
 
-##### Calender日历类
+#### Calender日历类
 
 ```
 	Calender日历类，替换了很多Date类中的方法。把很多数据都作为静态的属性，通过一些特定的方法来获取。比Date处理日期数据更加方便。
@@ -282,7 +282,7 @@ Date parse(String format);
 |    SECOND    |             秒              |
 | DAY_OF_WEEK  |        周几(周日为1)        |
 
-#### System类
+## System类
 
 ```
 System类提供了大量的静态方法，操作的内容和系统有关。	
