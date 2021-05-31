@@ -1,6 +1,9 @@
-package com.fs.b_math;
+package com.fs.a_api;
 
-public class Demo2 {
+/*
+ * math工具类--抽奖演示
+ */
+public class Demo3 {
 	public static void main(String[] args) {
 		for (int i = 0; i < 20; i++) {
 			double num = Math.random() * 100;

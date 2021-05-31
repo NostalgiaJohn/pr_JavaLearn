@@ -74,8 +74,11 @@ reverse();
 ###### 代码
 
 ```java
-package com.fs.a_stringbuffer;
+package com.fs.a_api;
 
+/*
+ * StringBufferTest
+ */
 public class Demo1 {
 	public static void main(String[] args) {
 		// 构造
@@ -139,12 +142,12 @@ public static double random();
 ##### 方法使用
 
 ```java
-package com.fs.b_math;
+package com.fs.a_api;
 
 /*
  * Math工具类方法
  */
-public class Demo1 {
+public class Demo2 {
 	public static void main(String[] args) {
 		// 绝对值
 		System.out.println(Math.abs(1.5));
@@ -183,9 +186,12 @@ public class Demo1 {
 ##### 抽奖小演示
 
 ```java
-package com.fs.b_math;
+package com.fs.a_api;
 
-public class Demo2 {
+/*
+ * math工具类--抽奖演示
+ */
+public class Demo3 {
 	public static void main(String[] args) {
 		for (int i = 0; i < 20; i++) {
 			double num = Math.random() * 100;
@@ -287,16 +293,13 @@ Date parse(String format);
 ```
 System类提供了大量的静态方法，操作的内容和系统有关。	
 	可以获取当前时间戳	long currentTimeMillis()
-	获取系统属性的方法	Properties getProperties();
+	获取系统属性的方法	Properties getProperties()
 	退出当前程序		  exit(int status)
-	数组拷贝方法 		  arrayCopy(Object src,  -- 原数组
-						int srcPos,  -- 从原数组指定下标开始
-						Object dest,  -- 目标数组
-						int destPos, -- 目标数组从指定位置开始
-						int length) -- 读取数据的个数
+	数组拷贝方法 		  arrayCopy(Object src,int srcPos,Object dest,int destPos,int length) 
+						-- (原数组,从原数组指定下标开始,目标数组,目标数组从指定位置开始,读取数据的个数)
 ```
 
-#### Runtime类
+## Runtime类
 
 ```
 Runtime当前程序运行环境类对象，主要程序启动就会有对应的Runtime存在。
@@ -311,7 +314,7 @@ Runtime当前程序运行环境类对象，主要程序启动就会有对应的R
 	Process exec(String exePath); 开启一个程序
 ```
 
-#### 包装类
+## 包装类
 
 ```
 Java中提供了两种数据类型
@@ -327,7 +330,7 @@ ArrayList中如果保存的数据类型是Integer类型
 	ArrayList元素：
 		[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	如果调用 
-		remove(1); 删除的是谁???
+		remove(1); 删除的是--下标为1的元素 
 ```
 
 | 基本类型 | 对应的包装类(java.lang) |
@@ -341,7 +344,7 @@ ArrayList中如果保存的数据类型是Integer类型
 | boolean  |         Boolean         |
 |   char   |        Character        |
 
-##### 自动装箱和自动拆箱
+#### 自动装箱和自动拆箱
 
 ```
 基本类和包装类型之间进行转换的操作，这个过程就是"装箱"和"拆箱"。
@@ -352,7 +355,21 @@ ArrayList中如果保存的数据类型是Integer类型
 	使用强制操作，太麻烦！！！
 ```
 
-##### 包装类和字符串数据转换过程
+代码
+
+```java
+// 强行包装1
+// The constructor Integer(int) is deprecated
+// Integer i = new Integer(5); 
+
+// 强行包装2
+Integer ii = Integer.valueOf(5);
+
+// 强行拆箱
+int intValue = ii.intValue();
+```
+
+#### 包装类和字符串数据转换过程
 
 ```
 从文本中读取的数据很多都是字符串类型，例如 JSON XML Database
@@ -366,61 +383,6 @@ public static long parseLong(String str);
 public static float parseFloat(String str);
 public static double parseDouble(String str);
 public static boolean parseBoolean(String str);
-	以上方法都是对饮的包装类调用，解析成对应的基本数据类型。
+	以上方法都是对应的包装类调用，解析成对应的基本数据类型。
 ```
 
-#### 多线程
-
-##### 进程是什么
-
-```
-	windows电脑中，打开任务管理器，可以看到电脑中执行的每一个程序，每一个程序就是一个进程。
-	Windows系统是一个多任务系统。
-	电脑可以同时执行多个程序。
-
-CPU时间片概念
-```
-
-![](D:\ProgramLearning\B站Java-NZGP\Day20-Java常用API和线程初识\img\CPU执行程序时间片概念.png)
-
-##### 线程是什么
-
-```
-电脑管家是一个程序 ==> 进程
-	电脑可以同时开启 病毒查杀，垃圾清理，一键加速...
-	
-	每一个功能就可以看做是线程！
-
-一个应用程序 ==> 进程
-	应用程序的某一个功能 ==> 线程
-	应用程序中可以同时执行多个功能 ==> 多线程
-
-线程使用的是系统资源，该系统资源你是操作系统分配给当前进程使用的。
-	多个线程的情况下，同时【抢占执行】会导致资源紧缺。
-	这里抢占过程就类似于进程抢占过程。
-
-一个Java程序，最少有几个线程？
-	2个线程
-		main线程
-		JVM的GC机制，守护线程。
-```
-
-##### 并发和并行
-
-```
-并发:
-	两个或者两个以上的事务在同一个时间段发生
-	
-并行:
-	两个或者两个以上的事务在同一个时刻发生
-	宏观并行，微观串行
-	
-高并发
-	双十一
-	JD 618
-	12306
-	中午下课的餐厅
-	同时在一个时间段以内，很多事情都发生了，这就是高并发。
-```
-
-![](D:\ProgramLearning\B站Java-NZGP\Day20-Java常用API和线程初识\img\并发和并行.png)

@@ -1,9 +1,9 @@
-package com.fs.b_math;
+package com.fs.a_api;
 
 /*
  * Math工具类方法
  */
-public class Demo1 {
+public class Demo2 {
 	public static void main(String[] args) {
 		// 绝对值
 		System.out.println(Math.abs(1.5));

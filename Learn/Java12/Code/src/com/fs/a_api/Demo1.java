@@ -1,5 +1,8 @@
-package com.fs.a_stringbuffer;
+package com.fs.a_api;
 
+/*
+ * StringBufferTest
+ */
 public class Demo1 {
 	public static void main(String[] args) {
 		// 构造

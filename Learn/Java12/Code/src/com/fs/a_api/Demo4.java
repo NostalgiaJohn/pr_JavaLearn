@@ -1,10 +1,13 @@
-package com.fs.c_data;
+package com.fs.a_api;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Demo1 {
+/*
+ * 日历/时间类演示
+ */
+public class Demo4 {
 	public static void main(String[] args) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 		String format = simpleDateFormat.format(new Date());
