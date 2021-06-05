@@ -225,6 +225,25 @@ public class Demo1 {
 synchronized (/* 锁对象 */) {
     
 }
+// eg：
+while (true) {
+    synchronized ("锁") {
+        if (ticket > 0) {
+            System.out.println(Thread.currentThread().getName() + "售出了" + ticket + "张票");
+            ticket -= 1;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        } else {
+            System.out.println(Thread.currentThread().getName() + "售罄！");
+            break;
+        }
+    }
+}
 
 /*
 特征:
@@ -236,39 +255,37 @@ synchronized (/* 锁对象 */) {
 	1. 目前锁对象感觉很随意，存在一定的隐患
 	2. 代码层级关系很复杂，看着有点麻烦
 */
-```
-
-##### 同步方法
 
 ```
-synchronized 作为关键字来修饰方法，修饰的方法就是对应的同步方
+
+#### 同步方法
+
+```
+synchronized 作为关键字来修饰方法，修饰的方法就是对应的同步方法
 有且只允许一个线程进入，到底是谁来完成的加锁操作?
 
-1. 静态成员方法
+1. 静态成员方法 --package com.fs.b_thread/Demo5
 	锁对象，是当前类对应的字节码文件.class 类名.class
-2. 非静态成员方法
+2. 非静态成员方法 --package com.fs.b_thread/Demo6
 	锁对象就是当前类对象 this
 
 选择同步方法是否使用static修饰问题
-	1. 如果非static修饰，要保证执行的线程对象有且只有一个，因为锁对象就是当前线程对
-象
+	1. 如果非static修饰，要保证执行的线程对象有且只有一个，因为锁对象就是当前线程对象
 	
 	2. 如果是static修饰，锁对象具有唯一性，多个线程使用的锁是同一个锁。
 	
 ```
 
-##### 2.4 Lock锁
+####  Lock锁
 
 ```
 Java提供了一个对于线程安全问题，加锁操作相对于同步代码块和同步方法更加广泛的一种操作方式。
-1. 对象化操作。
+1. 对象化操作
 	创建Lock构造方法
 		Lock lock = new ReentrantLock();
-2. 方法化操作。
-	开锁:
-		unlock();
-	加锁:
-		lock();
+2. 方法化操作
+	unlock();	//开锁
+	lock();		//加锁
 ```
 
 ##### 2.5 三种加锁方式的总结
