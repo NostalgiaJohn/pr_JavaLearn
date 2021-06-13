@@ -185,20 +185,19 @@ class MyThread1 implements Runnable {
 public class Demo1 {
 	public static void main(String[] args) {
 		// 1. 创建线程对象
-		ExecutorService service = Executors.newFixedThreadPool(5);
+		ExecutorService service = Executors.newFixedThreadPool(3);
 		
 		// 2. 创建一个MyThread1 Runnable接口实现类对象
 		MyThread1 target = new MyThread1();
 		
 		// 3. 使用线程池对象中的一个线程，制定目标代码
-		// 初始化线程数为5，这里使用的是线程池中已经存在的5个线程来执行代码
+		// 初始化线程数为3，这里使用的是线程池中已经存在的3个线程来执行代码
 		service.submit(target);
 		service.submit(target);
 		service.submit(target);
-		service.submit(target);
-		service.submit(target);
+
 		
-		// 因为5个线程都在使用中，这里等待执行完毕，出现空闲线程来执行对应代码
+		// 因为3个线程都在使用中，这里等待执行完毕，出现空闲线程来执行对应代码
 		service.submit(target);
 		service.submit(target);
 		
@@ -207,37 +206,38 @@ public class Demo1 {
 		// services.shutdown();
 	}
 }
+
 // 注意:可能会出现一定程度的线程抢占
 ```
 
-##### 3.4 从匿名内部类引入Lambda表达式
+##### 从匿名内部类引入Lambda表达式
 
 ```java
-package com.qfedu.b_executors;
+package com.fs.d_executors;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Demo2 {
 	public static void main(String[] args) {
-		ExecutorService service = Executors.newFixedThreadPool(5);
-
+		ExecutorService service = Executors.newFixedThreadPool(3);
 		
+		// Runnable匿名内部类的匿名对象作为方法的参数
 		service.submit(new Runnable() {
-			
+
 			@Override
 			public void run() {
-				System.out.println(Thread.currentThread().getName());
+				System.out.println(Thread.currentThread().getName() + "Runnable匿名内部类的匿名对象作为方法的参数");
 			}
-		}); 
-			
-		// lambda表达式
-		service.submit(() -> System.out.println(Thread.currentThread().getName())); 
-		service.submit(() -> System.out.println(Thread.currentThread().getName())); 
-		service.submit(() -> System.out.println(Thread.currentThread().getName())); 
-		service.submit(() -> System.out.println(Thread.currentThread().getName())); 	
+		});
+		
+		// lambda 表达式
+		service.submit(() -> System.out.println(Thread.currentThread().getName()));
+		service.submit(() -> System.out.println(Thread.currentThread().getName()));
+		service.submit(() -> System.out.println(Thread.currentThread().getName()));
 	}
 }
+
 ```
 
 #### 
