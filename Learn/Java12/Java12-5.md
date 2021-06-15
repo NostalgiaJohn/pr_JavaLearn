@@ -1,6 +1,6 @@
 # 网络编程
 
-#### 网络编程概述
+#### 1 网络编程概述
 
 ##### C/S和B/S
 
@@ -37,7 +37,7 @@ B/S
 	UDP TCP/IP
 ```
 
-![](https://www.linuxidc.com/upload/2018_12/181202194258181.png)
+![网络模型](https://i.loli.net/2021/06/15/vjyudQ2hreOTJG8.png)
 
 ##### UDP和TCP/IP区别
 
@@ -82,7 +82,7 @@ IPv6
 	0~1024不能用于自定义端口号使用，特定的系统端口号
 ```
 
-#### IP类
+#### 2 IP类
 
 ```
 SUN公司提供给开发使用的IP地址类
@@ -122,7 +122,7 @@ public class Demo1 {
 
 ```
 
-#### UDP协议数据传输
+#### 3 UDP协议数据传输
 
 ##### UDP数据传输方式
 
@@ -314,9 +314,9 @@ public class FeiQ {
 
 ```
 
-#### 4. TCP
+#### 4 TCP
 
-##### 4.1 TCP概述
+##### TCP概述
 
 ```
 	TCP相对于UDP比较稳定的传输协议，这里存在三次握手，保证连接状态，同时有明确的客户端和服务端之分
@@ -326,15 +326,15 @@ public class FeiQ {
 TCP操作而言，Java中提供了两个Socket
 	1. 服务端Socket 
 		java.net.ServerSocket;
-		创建对应的ServerScoket开启服务器，等待客户端连接
+		创建对应的ServerSocket开启服务器，等待客户端连接
 	2. 客户端Socket
 		java.net.Socket
 		创建客户端Scoket，并且连接服务器，同时将Socket发送给服务器绑定注册。
 ```
 
-![](D:/ProgramLearning/B站Java-NZGP/Day23-网络编程/img/TCP协议链接三次握手.png)
+![tcp三次握手](https://i.loli.net/2021/06/15/f7zvFeNXiau4sO6.png)
 
-##### 4.2 Socket 客户端Socket
+##### Socket 客户端Socket
 
 ```
 给客户端提供数据传输的符合TCP/IP要求的Socket对象
@@ -364,7 +364,7 @@ TCP操作而言，Java中提供了两个Socket
 TCP/IP协议对应的Socket是给予IO流实现的。
 ```
 
-##### 4.3 ServerSocket服务端Socket
+##### ServerSocket服务端Socket
 
 ```
 在服务端开启Socket服务器
@@ -374,17 +374,15 @@ TCP/IP协议对应的Socket是给予IO流实现的。
 
 成员方法 Method：
 	Socket accept();
-		监听并且连接，得到一个Socket对象，同时该方法是一个阻塞方法，会处于一个始终
-		的监听状态
-		返回的是Socket，也就是客户端Socket对象，获取到当前Socket对象，相对于获取到
-		客户端连接，同时使用的Socket和客户端一致。
+		监听并且连接，得到一个Socket对象，同时该方法是一个阻塞方法，会处于一个始终的监听状态
+		返回的是Socket，也就是客户端Socket对象，获取到当前Socket对象，相对于获取到客户端连接，同时使用的Socket和客户端一致。
 ```
 
-##### 4.6 TCP协议代码演示
+##### TCP协议代码演示
 
-![](D:/ProgramLearning/B站Java-NZGP/Day23-网络编程/img/TCP客户端服务端输入输出关系.png)
+![TCP客户端与服务端输入输出关系](https://i.loli.net/2021/06/15/CMou2IErhbXzfD3.png)
 
-###### 4.6.1 服务器代码
+###### 服务器代码
 
 ```
 流程：
@@ -396,7 +394,7 @@ TCP/IP协议对应的Socket是给予IO流实现的。
 ```
 
 ```java
-package com.qfedu.c_tcp;
+package com.fs.h_tcp;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -415,10 +413,11 @@ import java.net.Socket;
 public class TcpServer1 {
 	public static void main(String[] args) throws IOException {
 		System.out.println("服务器启动");
-		System.out.println("-----------------------");
+		System.out.println("----------------------");
+		
 		// 1. 创建ServerSocket服务器，同时监听指定端口
 		ServerSocket serverSocket = new ServerSocket(8848);
-	
+		
 		// 2. 通过accept方法获取Socket连接，得到客户端Socket对象
 		Socket socket = serverSocket.accept();
 		
@@ -429,21 +428,21 @@ public class TcpServer1 {
 		byte[] buf = new byte[1024];
 		int length = inputStream.read(buf);
 		System.out.println(new String(buf, 0, length));
-        
+		
 		// 4. 通过Socket对象，获取OutputStream，发送数据给客户端
 		OutputStream outputStream = socket.getOutputStream();
-		String str = "欢迎来到德莱联盟";
+		String str = "欢迎来到联盟";
 		
 		outputStream.write(str.getBytes());
 		
-		// 5. 关闭Socket服务 同时关闭当前Socket使用的输入字节流和输出字节流	
+		// 5. 关闭Socket服务 同时关闭当前Socket使用的输入字节流和输出字节流
 		// Closing this socket will also close the socket's InputStream and OutputStream. 
-		socket.close();	
+		socket.close();
 	}
 }
 ```
 
-###### 4.6.2 客户端代码
+###### 客户端代码
 
 ```
 流程:
@@ -454,7 +453,7 @@ public class TcpServer1 {
 ```
 
 ```java
-package com.qfedu.c_tcp;
+package com.fs.h_tcp;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -473,18 +472,20 @@ public class TcpClient1 {
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		System.out.println("客户端启动");
 		System.out.println("------------------------");
+		
 		// 1. 创建Socket服务，同时明确连接服务器的IP地址和对应端口号
-		Socket socket = new Socket("192.168.31.154", 8848);
+		Socket socket = new Socket("172.29.57.197",8848);
 		
 		// 2. 通过Socket对象，获取对应的OutputStream对象，发送数据给服务器
 		OutputStream outputStream = socket.getOutputStream();
 		
-		outputStream.write("你好服务器!!!".getBytes());
+		outputStream.write("你好服务器".getBytes());
 		
 		// 3. 通过Socket对象，获取对应的InputStream对象，接收服务器发送数据
 		InputStream inputStream = socket.getInputStream();
 		
 		byte[] buf = new byte[1024];
+		
 		int length = inputStream.read(buf);
 		System.out.println(new String(buf, 0, length));
 		
@@ -492,15 +493,16 @@ public class TcpClient1 {
 		socket.close();
 	}
 }
+
 ```
 
-#### 4.7 文件上传操作
+#### 文件上传操作
 
-###### 4.7.1 分析过程
+###### 分析过程
 
-![](D:/ProgramLearning/B站Java-NZGP/Day23-网络编程/img/文件上传细节图例.png)
+![文件上传过程细节](https://i.loli.net/2021/06/15/G4y6EQYBSKk2LFc.png)
 
-###### 4.7.2 客户端程序
+###### 客户端程序
 
 ```
 流程：
@@ -512,50 +514,48 @@ public class TcpClient1 {
 ```
 
 ```java
-package com.qfedu.d_fileupload;
+package com.fs.h_tcp;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 /*
-流程：
-	1. 创建对应文件的输入字节流操作，这里可以使用缓冲
-	2. 启动Socket，
-	3. 获取Socket输出OutputStream对象，发送数据给服务器
-	4. 边读边发
-	5. 当文件读取结束，发送完毕，关闭客户端
+流程:
+	1. 创建Socket服务，同时明确连接服务器的IP地址和对应端口号
+	2. 通过Socket对象，获取对应的OutputStream对象，发送数据给服务器
+	3. 通过Socket对象，获取对应的InputStream对象，接收服务器发送数据
+	4. 关闭服务
  */
-public class TcpClient {
-	public static void main(String[] args) throws IOException {
-		// 1. 创建对应文件的输入字节流操作，这里可以使用缓冲
-		BufferedInputStream bis = new BufferedInputStream(
-				new FileInputStream(new File("D:/aaa/1.mp4")));
+public class TcpClient1 {
+	public static void main(String[] args) throws UnknownHostException, IOException {
+		System.out.println("客户端启动");
+		System.out.println("------------------------");
 		
-		// 2. 启动Socket
-		Socket socket = new Socket(InetAddress.getLocalHost().getHostAddress(), 8848);
+		// 1. 创建Socket服务，同时明确连接服务器的IP地址和对应端口号
+		Socket socket = new Socket(InetAddress.getLocalHost().getHostAddress(),8848);
 		
-		// 3. 获取Socket输出OutputStream对象，发送数据给服务器
+		// 2. 通过Socket对象，获取对应的OutputStream对象，发送数据给服务器
 		OutputStream outputStream = socket.getOutputStream();
 		
-		int length = -1;
-		byte[] buf = new byte[1024 * 8];
+		outputStream.write("你好服务器".getBytes());
 		
+		// 3. 通过Socket对象，获取对应的InputStream对象，接收服务器发送数据
+		InputStream inputStream = socket.getInputStream();
 		
-		// 4. 读取数据，发送数据
-		while ((length = bis.read(buf)) != -1) {
-			outputStream.write(buf, 0, length);
-		}
+		byte[] buf = new byte[1024];
 		
-		// 5. 关闭资源
+		int length = inputStream.read(buf);
+		System.out.println(new String(buf, 0, length));
+		
+		// 4. 关闭服务
 		socket.close();
-		bis.close();
 	}
 }
+
 ```
 
 ###### 4.7.3 服务端程序
