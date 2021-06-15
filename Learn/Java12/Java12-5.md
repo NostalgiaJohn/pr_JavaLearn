@@ -569,7 +569,7 @@ public class TcpClient1 {
 ```
 
 ```java
-package com.qfedu.d_fileupload;
+package com.fs.m_fileupload;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -594,26 +594,25 @@ public class TcpServer {
 		Socket socket = serverSocket.accept();
 		
 		// 2. 明确保存文件的位置，创建对应文件夹的输出缓冲字节流
-		BufferedOutputStream bos = new BufferedOutputStream(
-				new FileOutputStream(
-						new File("D:/aaa/temp.mp4")));
+		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File("D:/aaa/temp.mp4")));
 		
-		// 3. 获取Socket对应的输入流
+		// 3. 读取数据，写入文件
 		InputStream inputStream = socket.getInputStream();
 		
-		// 4. 边读边写
+		// 边读边写
 		int length = -1;
 		byte[] buf = new byte[1024 * 8];
 		
-		while ((length = inputStream.read(buf)) != -1) {
+		while((length = inputStream.read(buf)) != -1) {
 			bos.write(buf, 0, length);
 		}
 		
-		// 5. 关闭资源
+		// 4. 关闭服务器
 		bos.close();
 		socket.close();
 	}
 }
+
 ```
 
 ###### 4.7.4 目前服务端代码问题
@@ -627,15 +626,66 @@ public class TcpServer {
 	多线程
 ```
 
-#### 5. 作业
+解决代码
+
+```java
+package com.fs.m_fileupload;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class TcpGoodServer {
+	public static void main(String[] args) throws IOException {
+		System.out.println("服务端代码启动...");
+		
+		// 1. 启动TCP服务端服务
+		ServerSocket serverSocket = new ServerSocket(8848);
+		
+		// 2. 使用线程池
+		ExecutorService tp = Executors.newFixedThreadPool(5);
+		
+		// 3. 循环
+		while (true) {
+			
+			// 连接客户端
+			Socket socket = serverSocket.accept();
+			
+			// 线程启动
+			tp.submit(() -> {
+				try {
+					System.out.println(Thread.currentThread().getName());
+					InputStream inputStream = socket.getInputStream();
+					String fileName = UUID.randomUUID().toString().replace("-", "") + ".mp4";
+					
+					BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File("D:/aaa/temp/" + fileName)));
+				
+					int length = -1;
+					byte[] buf = new byte[1024 * 8];
+					
+					while ((length = inputStream.read(buf)) != -1) {
+						bos.write(buf, 0, length);
+					}
+					
+					bos.close();
+					socket.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+		}
+	}
+}
 
 ```
-1. 尝试实现使用TCP完成一个局域网聊天室
-	a. 发送者的IP地址
-	b. 接收人的IP地址
-	c. 要求一个服务端，两个客户端
 
-2. 复习
-3. 代码三遍
-```
+
 
