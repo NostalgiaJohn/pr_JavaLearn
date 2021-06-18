@@ -40,7 +40,7 @@ Java文件
 	在Java代码中，把在内存代码区保存的.class字节码内存空间，看做是一个对象。而该对象中包含了对应Java文件的所有内容。
 ```
 
-![](D:/ProgramLearning/B站Java-NZGP/Day24-反射/img/class文本保存在内存的代码区.png)
+![](C:\Users\21117\Desktop\class文本保存在内存的代码区.png)
 
 ##### 1.4 Class到底是什么？
 
@@ -78,7 +78,7 @@ class Dog {
 }
 ```
 
-![](D:/ProgramLearning/B站Java-NZGP/Day24-反射img/Class引出.png)
+![](D:/ProgramLearning/B站Java-NZGP/Day24-反射/img/Class引出.png)
 
 #### 2. 反射必会方法【重点】
 
@@ -97,7 +97,7 @@ Class 类对象.getClass();
 ```
 
 ```java
-package com.qfedu.a_reflect;
+package com.fs.n_reflect;
 
 /*
 Class Class.forName(String packageNameAndClassName);    
@@ -114,7 +114,7 @@ public class GetClassObject {
 		
 		Class<?> forName = Class.forName("com.qfedu.a_reflect.Person");
 		
-		Class<com.qfedu.a_reflect.Person> cls = Person.class;
+		Class<com.fs.n_reflect.Person> cls = Person.class;
 		
 		Class<? extends Person> class1 = new Person().getClass();
 		
@@ -122,15 +122,22 @@ public class GetClassObject {
 		 * 请问这个三个Class对象是不是同一个Class对象???
 		 * 		Class对象对应的是在内存代码区的.class文件占用的内存空间
 		 * 		Class引用数据类型变量保存的就是当前空间首地址，
-		 * 		Java程序中，.class字节码文件有且之加载一次
-		 * 		.class文件占用的空间独一份，不管通过哪一种方式获取对应的Class类对象
-		 * 		都是同一个对象
+		 * 		Java程序中，.class字节码文件有且只加载一次
+		 * 		.class文件占用的空间独一份，不管通过哪一种方式获取对应的Class类对象都是同一个对象
 		 */
 		System.out.println(forName == cls);
 		System.out.println(class1 == cls);
 		System.out.println(class1 == forName);
+		
+		System.out.println("-------------------------");
+		
+		System.out.println(forName);
+		System.out.println(cls);
+		System.out.println(class1);
+		System.out.println(int.class);
 	}
 }
+
 ```
 
 ##### 2.2 Constructor 构造方法类涉及到的方法
@@ -167,8 +174,8 @@ public Constructor getConstructor(Class... initArgumentTypes);
 			这里无参数 () or (null)
 			参数类型int类型 (int.class)
 			参数类型int, String类型 (int.class, String.class)
-	initArgumentTypes:
-		参数名 初始化参数类型复数
+	initArgumentTypes:参数名 
+	初始化参数类型复数
 		
 public Constructor getDeclaredConstructor(Class... initArgumentTypes);
 	【暴力反射】
@@ -182,14 +189,13 @@ public Constructor getDeclaredConstructor(Class... initArgumentTypes);
 		异常:
 			NoSuchMethodException
 	... : 不定长参数
-		构造方法需要的参数类型是很多的，有可能无参数，有可能有参数。... 不定长参数
-		类约束使用，增强代码的普适性
+		构造方法需要的参数类型是很多的，有可能无参数，有可能有参数。使用不定长参数类约束使用，增强代码的普适性
 		例如:
 			这里无参数 () or (null)
 			参数类型int类型 (int.class)
 			参数类型int, String类型 (int.class, String.class)
-	initArgumentTypes:
-		参数名 初始化参数类型复数
+	initArgumentTypes:参数名 
+		初始化参数类型复数
 		
 Object newInstance(Object... initArguments);
 	通过Constructor对象来调用，传入当前构造方法所需创建对象的初始化参数，创建对象。
