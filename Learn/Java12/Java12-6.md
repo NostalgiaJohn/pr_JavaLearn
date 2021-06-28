@@ -40,7 +40,7 @@ Java文件
 	在Java代码中，把在内存代码区保存的.class字节码内存空间，看做是一个对象。而该对象中包含了对应Java文件的所有内容。
 ```
 
-![](C:\Users\21117\Desktop\class文本保存在内存的代码区.png)
+![](D:/ProgramLearning/B站Java-NZGP/Day24-反射/img/class文本保存在内存的代码区.png)
 
 ##### 1.4 Class到底是什么？
 
@@ -204,8 +204,10 @@ Object newInstance(Object... initArguments);
 	这里使用不定长参数来传入数据
 ```
 
+代码
+
 ```java
-package com.qfedu.a_reflect;
+package com.fs.n_reflect;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

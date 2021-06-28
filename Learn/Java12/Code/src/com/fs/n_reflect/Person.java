@@ -51,7 +51,7 @@ public class Person {
 	}
 	
 	public void game() {
-		System.out.println("大吉大利，腾讯倒闭");
+		System.out.println("大吉大利");
 	}
 	
 	public void game(String name) {
