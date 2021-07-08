@@ -466,7 +466,7 @@ Object get(Object obj);
 ```
 
 ```java
-package com.qfedu.a_reflect;
+package com.fs.n_reflect;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -491,7 +491,7 @@ public class GetFieldObject {
 			System.out.println(field);
 		}
 		
-		System.out.println("-------------------------------------------------------");
+		System.out.println("--------------------");
 		System.out.println();
 		
 		Field[] declaredFields = cls.getDeclaredFields();
@@ -499,13 +499,13 @@ public class GetFieldObject {
 			System.out.println(field);
 		}
 		
-		System.out.println("-------------------------------------------------------");
+		System.out.println("--------------------");
 		System.out.println();
 		
 		Field field = cls.getField("test");
 		System.out.println(field);
 		
-		System.out.println("-------------------------------------------------------");
+		System.out.println("--------------------");
 		System.out.println();
 		
 		Field id = cls.getDeclaredField("id");
@@ -514,7 +514,7 @@ public class GetFieldObject {
 		System.out.println(id);
 		System.out.println(name);
 		
-		System.out.println("-------------------------------------------------------");
+		System.out.println("--------------------");
 		System.out.println();
 		
 		Object obj = cls.getConstructor().newInstance();
@@ -527,7 +527,7 @@ public class GetFieldObject {
 		name.setAccessible(true);
 		
 		id.set(obj, 1);
-		name.set(obj, "骚磊");
+		name.set(obj, "foo");
 		
 		System.out.println(obj);
 		
@@ -536,6 +536,7 @@ public class GetFieldObject {
 		System.out.println(name.get(obj));
 	}
 }
+
 ```
 
 ##### 2.5 给予暴力反射私有化内容的权限操作
