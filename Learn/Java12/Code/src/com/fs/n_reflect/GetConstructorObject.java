@@ -80,7 +80,6 @@ public class GetConstructorObject {
 		System.out.println();
 		
 		// 给予通过暴力反射获取到的非公开权限成员变量，成员方法，构造方法，操作权限
-		// 暴力反射的为所欲为操作
 		declaredConstructor2.setAccessible(true);
 		Person p2 = (Person) declaredConstructor2.newInstance("张三");
 		System.out.println(p2);

@@ -1,9 +1,7 @@
 package com.fs.n_reflect;
 
 /**
- * 
  * @author fStardust
- *
  */
 public class Person {
 	//成员变量 Field

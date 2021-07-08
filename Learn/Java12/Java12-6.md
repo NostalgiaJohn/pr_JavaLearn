@@ -20,9 +20,9 @@ Java文件
 	.class字节码文件中，包含了Java文件的所有内容
 ```
 
-![](D:/ProgramLearning/B站Java-NZGP/Day24-反射/img/反编译class1.png)
+![反编译class1](.\img\反编译class1.png)
 
-![](D:/ProgramLearning/B站Java-NZGP/Day24-反射/img/反编译class2.png)
+![反编译class2](.\img\反编译class2.png)
 
 ##### 1.2 程序加载过程和.class文件的关系
 
@@ -40,7 +40,7 @@ Java文件
 	在Java代码中，把在内存代码区保存的.class字节码内存空间，看做是一个对象。而该对象中包含了对应Java文件的所有内容。
 ```
 
-![](D:/ProgramLearning/B站Java-NZGP/Day24-反射/img/class文本保存在内存的代码区.png)
+![class文本保存在内存的代码区](img/class文本保存在内存的代码区.png)
 
 ##### 1.4 Class到底是什么？
 
@@ -78,7 +78,7 @@ class Dog {
 }
 ```
 
-![](D:/ProgramLearning/B站Java-NZGP/Day24-反射/img/Class引出.png)
+![Class引出](img/Class引出.png)
 
 #### 2. 反射必会方法【重点】
 
@@ -217,16 +217,15 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class GetConstructorObject {
 	public static void main(String[] args) 
-			throws ClassNotFoundException, 
-			NoSuchMethodException, SecurityException, 
-			InstantiationException, IllegalAccessException, 
+			throws ClassNotFoundException, NoSuchMethodException, 
+			SecurityException, InstantiationException, IllegalAccessException, 
 			IllegalArgumentException, InvocationTargetException {
 		/*
-		 * 根据指定的包名.类名，获取对应的Class对象
+		 * 根据指定的包名.类名， 获取对应的Class对象
 		 */
-		Class<?> cls = Class.forName("com.qfedu.a_reflect.Person");
+		Class<?> cls = Class.forName("com.fs.n_reflect.Person");
 		
-		/*
+		/* 
 		 * 获取当前Person类内所有非私有化构造方法
 		 */
 		Constructor<?>[] constructors = cls.getConstructors();
@@ -234,10 +233,10 @@ public class GetConstructorObject {
 			System.out.println(constructor);
 		}
 		
-		System.out.println("----------------------------------------------------");
+		System.out.println("--------------------");
 		System.out.println();
 		
-		/* 
+		/*
 		 * 暴力反射，获取Person类内所有的构造方法，包括私有化构造方法
 		 */
 		Constructor<?>[] declaredConstructors = cls.getDeclaredConstructors();
@@ -245,7 +244,7 @@ public class GetConstructorObject {
 			System.out.println(constructor);
 		}
 		
-		System.out.println("----------------------------------------------------");
+		System.out.println("--------------------");
 		System.out.println();
 		
 		/*
@@ -259,9 +258,10 @@ public class GetConstructorObject {
 		System.out.println(constructor2);
 		System.out.println(constructor3);
 		
-		// Constructor<?> constructor = cls.getConstructor(String.class);
-		// System.out.println(constructor);
-		System.out.println("----------------------------------------------------");
+		 // Constructor<?> constructor = cls.getConstructor(String.class);
+		 // System.out.println(constructor);
+		
+		System.out.println("--------------------");
 		System.out.println();
 		
 		/*
@@ -272,7 +272,7 @@ public class GetConstructorObject {
 		System.out.println(declaredConstructor1);
 		System.out.println(declaredConstructor2);
 		
-		System.out.println("----------------------------------------------------");
+		System.out.println("--------------------");
 		System.out.println();
 		
 		/*
@@ -283,16 +283,16 @@ public class GetConstructorObject {
 		Person p1 = (Person) constructor1.newInstance();
 		System.out.println(p1);
 		System.out.println(new Person());
-		System.out.println(constructor3.newInstance(1, "骚磊"));
+		System.out.println(constructor3.newInstance(1, "张三"));
 		
-		System.out.println("----------------------------------------------------");
+		System.out.println("--------------------");
 		System.out.println();
 		
 		// 给予通过暴力反射获取到的非公开权限成员变量，成员方法，构造方法，操作权限
-		// 暴力反射的为所欲为操作
 		declaredConstructor2.setAccessible(true);
-		Person p2 = (Person) declaredConstructor2.newInstance("骚磊");
+		Person p2 = (Person) declaredConstructor2.newInstance("张三");
 		System.out.println(p2);
+		
 	}
 }
 ```
@@ -334,8 +334,7 @@ Method getMethod(String methodName, Class... parameterTypes);
 		cls.getMethod("getName");		
 
 Method getDeclaredMethod(String methodName, Class... parameterTypes);
-	根据指定的方法名和对应的参数类型，获取对应的成员方法，包括私有化成员方法，但是不
-	包括从父类继承而来的方法
+	根据指定的方法名和对应的参数类型，获取对应的成员方法，包括私有化成员方法，但是不包括从父类继承而来的方法
 	methodName: 
 		方法名，指定获取的是哪一个方法
 	parameterTypes:
@@ -355,7 +354,7 @@ Object invoke(Object obj, Object... arguments);
 ```
 
 ```java
-package com.qfedu.a_reflect;
+package com.fs.n_reflect;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -365,12 +364,12 @@ import java.lang.reflect.Method;
  */
 public class GetMethodObject {
 	public static void main(String[] args) 
-			throws ClassNotFoundException,
+			throws ClassNotFoundException, 
 			NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		/*
 		 * 根据指定的包名.类名，获取对应的Class对象
 		 */
-		Class<?> cls = Class.forName("com.qfedu.a_reflect.Person");
+		Class<?> cls = Class.forName("com.fs.n_reflect.Person");
 		
 		/*
 		 * 获取类内所有public修饰的成员方法，包括从父类继承而来的方法
@@ -380,19 +379,18 @@ public class GetMethodObject {
 			System.out.println(method);
 		}
 		
-		System.out.println("-------------------------------------------------------");
+		System.out.println("------------------------");
 		System.out.println();
 		
 		/*
-		 * 获取类内所有成员方法，包括私有化成员方法，但是不包括父类继承而来的方法
+		 * 获取类内所有成员方法，包括私有化成员方法，但是不包括父类继承而来的
 		 */
 		Method[] declaredMethods = cls.getDeclaredMethods();
-		
 		for (Method method : declaredMethods) {
 			System.out.println(method);
 		}
 		
-		System.out.println("-------------------------------------------------------");
+		System.out.println("------------------------");
 		System.out.println();
 		
 		/*
@@ -400,13 +398,12 @@ public class GetMethodObject {
 		 */
 		Method game1 = cls.getMethod("game");
 		Method game2 = cls.getMethod("game", String.class);
-		// Method game3 = cls.getMethod("game", int.class);
+		//	Method game3 = cls.getMethod("game", int.class);
 		
 		System.out.println(game1);
 		System.out.println(game2);
-		// System.out.println(game3);
 		
-		System.out.println("-------------------------------------------------------");
+		System.out.println("------------------------");
 		System.out.println();
 		
 		/*
@@ -414,26 +411,26 @@ public class GetMethodObject {
 		 * 暴力反射
 		 */
 		Method declaredMethod1 = cls.getDeclaredMethod("testPrivate");
-		Method declaredMethod2 = cls.getDeclaredMethod("testPrivate",String.class);
+		Method declaredMethod2 = cls.getDeclaredMethod("testPrivate", String.class);
 		
 		System.out.println(declaredMethod1);
 		System.out.println(declaredMethod2);
-
-		System.out.println("-------------------------------------------------------");
+		
+		System.out.println("------------------------");
 		System.out.println();
 		
-		Object obj = cls.getConstructor().newInstance();
 		/*
 		 * 执行public修饰的成员方法
 		 */
+		Object obj = cls.getConstructor().newInstance();
 		game1.invoke(obj);
-		game2.invoke(obj, "WOT");
+		game2.invoke(obj, "坦克大战");
 		
-		System.out.println("-------------------------------------------------------");
+		System.out.println("------------------------");
 		System.out.println();
 		
 		/*
-		 * 给予暴力反射操作权限的情况下，执行私有化成员方法
+		 * 基于暴力反射操作权限的情况下，执行私有化成员方法
 		 */
 		declaredMethod1.setAccessible(true);
 		declaredMethod1.invoke(obj);
@@ -442,7 +439,10 @@ public class GetMethodObject {
 		declaredMethod2.invoke(obj, "烤羊排");
 	}
 }
+
 ```
+
+
 
 ##### 2.4 Field成员变量涉及到方法
 
@@ -547,10 +547,3 @@ setAccessible(boolean flag);
 给予Constructor，Method, Field对象，私有化内容，操作权限设置
 true表示可以操作
 ```
-
-#### 3. 作业
-
-```
-认真复习今天的代码，思路，方法.....
-```
-
