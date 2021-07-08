@@ -536,7 +536,6 @@ public class GetFieldObject {
 		System.out.println(name.get(obj));
 	}
 }
-
 ```
 
 ##### 2.5 给予暴力反射私有化内容的权限操作
