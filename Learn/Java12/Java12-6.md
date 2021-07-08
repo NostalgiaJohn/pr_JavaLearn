@@ -442,8 +442,6 @@ public class GetMethodObject {
 
 ```
 
-
-
 ##### 2.4 Field成员变量涉及到方法
 
 ```
@@ -542,8 +540,9 @@ public class GetFieldObject {
 
 ##### 2.5 给予暴力反射私有化内容的权限操作
 
-```java
 setAccessible(boolean flag);
+
 给予Constructor，Method, Field对象，私有化内容，操作权限设置
+
 true表示可以操作
-```
+
