@@ -117,7 +117,21 @@ W3C万维网联盟指定的规范
 
 ##### 1.4.2 Schema约束
 
-```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
 
+<!--
+1. 填写根节点约束
+2. 引入xsi前缀，xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+3. 引入xsd文件命名空间 xsi:schemaLocation="http://www.qfedu.com/xml  student.xsd"
+4. 为xsd约束声明一个前缀，作为表示
+-->
+<students   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://www.qfedu.com/xml"
+            xsi:schemaLocation="http://www.qfedu.com/xml  student.xsd"
+>
+
+...
+<!-- xsd文件(Schema约束文件)及完整xml文件，见Code\com\fs\c_dtd -->
 ```
 
