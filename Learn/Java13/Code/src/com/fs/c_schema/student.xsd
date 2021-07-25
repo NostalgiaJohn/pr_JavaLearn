@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns="http://www.fs.com/xml"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.fs.com/xml" elementFormDefault="qualified">
+    <!-- 根节点名字和包含的内容，内容是自定义studentType -->
+    <xsd:element name="students" type="studentsType"/>
+    <!-- studentType类型声明   -->
+    <xsd:complexType name="studentsType">
+        <xsd:sequence>
+            <!-- students根节点中存放的是student类型  type="studentType" 要求student的个数从0开始 个数不限制 -->
+            <xsd:element name="student" type="studentType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- studentType声明 -->
+    <xsd:complexType name="studentType">
+        <xsd:sequence>
+            <!-- 要求student标签内有name，age，sex子标签，并且要求对一个对应保存的数据类型是type指定 -->
+            <xsd:element name="name" type="xsd:string"/>
+            <!-- ageType 和 sexType 是自定义数据约束 -->
+            <xsd:element name="age" type="ageType" />
+            <xsd:element name="sex" type="sexType" />
+        </xsd:sequence>
+        <!-- 给予Student标签属性 属性为id，要声明idType， use="required"不可缺少的 -->
+        <xsd:attribute name="id" type="idType" use="required"/>
+    </xsd:complexType>
+    <!-- sexType性别类型声明 -->
+    <xsd:simpleType name="sexType">
+        <xsd:restriction base="xsd:string">
+            <!-- 有且只有两个数据 male female -->
+            <xsd:enumeration value="male"/>
+            <xsd:enumeration value="female"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ageType">
+        <xsd:restriction base="xsd:integer">
+            <!-- 0 ~ 256 要求范围，是一个integer类型 -->
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="256"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="idType">
+        <xsd:restriction base="xsd:string">
+            <!-- ID类型，要求gp_xxxx(四位数字) -->
+            <xsd:pattern value="gp_\d{4}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema> 

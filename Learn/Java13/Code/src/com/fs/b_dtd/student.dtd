@@ -1,0 +1,10 @@
+<!-- students 根标签 要求根标签内存放student -->
+<!ELEMENT students (student*) >
+<!-- student标签包含子标签的内容 -->
+<!ELEMENT student (name,age,sex)>
+<!-- 所有子标签当前数据都都是文本形式 -->
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT sex (#PCDATA)>
+<!-- ATTLIST Attribute List 属性列表 student id ID -->
+<!ATTLIST student id ID #REQUIRED>

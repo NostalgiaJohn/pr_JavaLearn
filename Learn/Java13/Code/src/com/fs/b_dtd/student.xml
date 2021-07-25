@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE students SYSTEM "D:\ProgramLearning\JavaCode\Code\src\com\fs\b_dtd\student.dtd">
+<!-- 另一种方式 -->
+<!--        <!DOCTYPE students [-->
+<!--        &lt;!&ndash; students 根标签 要求根标签内存放student &ndash;&gt;-->
+<!--        <!ELEMENT students (student*) >-->
+<!--        &lt;!&ndash; student标签包含子标签的内容 &ndash;&gt;-->
+<!--        <!ELEMENT student (name,age,sex)>-->
+<!--        &lt;!&ndash; 所有子标签当前数据都都是文本形式 &ndash;&gt;-->
+<!--        <!ELEMENT name (#PCDATA)>-->
+<!--        <!ELEMENT age (#PCDATA)>-->
+<!--        <!ELEMENT sex (#PCDATA)>-->
+<!--        &lt;!&ndash; ATTLIST Attribute List 属性列表 student id ID &ndash;&gt;-->
+<!--        <!ATTLIST student id ID #REQUIRED>-->
+<!--        ]>-->
+<students>
+    <student id="qf1">
+        <name>张三</name>
+        <age>12</age>
+        <sex>male</sex>
+    </student>
+    <student id="qf2">
+        <name>foo</name>
+        <age>16</age>
+        <sex>male</sex>
+    </student>
+</students>
