@@ -156,7 +156,7 @@ exit
 #### *名词解释
 
 ```
-JVM (Java Virtyal Machine)虚拟机：
+JVM (Java Virtual Machine)虚拟机：
 	使用软件在不同操作系统中，模拟相同的环境
 JRE (Java Runtime Environment)运行环境：
 	包含JVM和解释器
